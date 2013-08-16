@@ -1,0 +1,16 @@
+{
+  "name": "ember-sherpa",
+  "version": "0.1.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "typeahead.js": "~0.9.3",
+    "bootstrap": "~2.3.2",
+    "flatui": "git://github.com/iurevych/Flat-UI.git"
+  }
+}
