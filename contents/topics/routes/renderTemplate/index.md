@@ -1,0 +1,11 @@
+---
+title: "renderTemplate"
+description: "function that renders the template for this route"
+arguments:
+    controller: "required - controller object instantiated for this route"
+    model: "optional - model(s) that were returned by route's model property"
+template: index.jade
+---
+call ```js this.render( options )``` to cause the templates to actually be rendered
+
+WARNING: If you do not call ```this.render``` method in this function then your route will not produce output during render

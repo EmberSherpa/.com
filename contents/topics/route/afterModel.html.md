@@ -1,4 +1,0 @@
----
-title: "afterModel"
-layout: "topic"
----

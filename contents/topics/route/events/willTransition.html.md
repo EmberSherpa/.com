@@ -1,4 +1,0 @@
----
-title: "willTransition"
-layout: "topic"
----

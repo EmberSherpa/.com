@@ -3,3 +3,4 @@ out/
 .idea
 docpad-debug.log
 /components/
+.sass-cache/

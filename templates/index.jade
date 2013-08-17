@@ -1,28 +1,13 @@
 extends layout
 
+block topics
+  ul.topics
+    = page.topics
+
+
 block content
-  include author
-  each article in articles
-    article.article.intro
-      header
-        p.date
-          span= moment(article.date).format('DD. MMMM YYYY')
-        h2
-          a(href=article.url)= article.title
-      section.content
-        !{ typogr(article.intro).typogrify() }
-        if article.hasMore
-          p.more
-            a(href=article.url) more
-
-block prepend footer
-  div.nav
-    if prevPage
-      a(href=prevPage.url) « Newer
-    else
-      a(href='/archive.html') « Archives
-    if nextPage
-      a(href=nextPage.url) Next page »
-
-
-
+  article.article.intro
+    header
+      h2
+        a(href=page.url)= page.title
+  block topics

@@ -1,4 +1,0 @@
----
-name: "serialize"
-layout: "topic"
----
