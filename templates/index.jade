@@ -2,7 +2,9 @@ extends layout
 
 block topics
   ul.topics
-    = page.topics
+    for topic in topics
+      li
+        topic.title
 
 
 block content
