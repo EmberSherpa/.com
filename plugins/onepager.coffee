@@ -7,18 +7,19 @@ module.exports = (env, callback) ->
   contentTree = env.ContentTree
 
   class OnePagerPage extends page
+
+    topics = []
+
     constructor: (@filepath, @metadata, @markdown) ->
       dirname = path.dirname( @filepath.full )
+      thisPage = @
       utils.readdirRecursive( dirname,
       ( error, @topics ) =>
-        console.log "For: " + dirname
         @topics[1..].map( (@item) =>
           page.fromFile( { full: path.join( dirname, item ), relative: item },
           ( error, result ) =>
-            @item = result
-            console.log @item
+            thisPage.topics.push result
           )
-          return item
         )
       )
 
