@@ -1,4 +1,4 @@
 ---
-name: "serialize"
+title: "serialize"
 template: index.jade
 ---
