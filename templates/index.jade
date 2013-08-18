@@ -1,16 +1,16 @@
 extends layout
 
-block topics
+mixin topics(topics)
   ul.topics
-    for topic in page.topics
-      li
+    for topic in topics
+      li.topic
         a(href=topic.url)= topic.title
-        p= topic.getDescription()
-
+        = topic.getDescription()
+        +topics( topic.topics )
 
 block content
   article.article.intro
     header
       h2
         a(href=page.url)= page.title
-  block topics
+  +topics( page.topics )

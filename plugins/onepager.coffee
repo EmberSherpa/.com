@@ -3,8 +3,24 @@ module.exports = (env, callback) ->
   utils = env.utils
   path  = require 'path'
 
-  page = env.plugins.MarkdownPage
-  ContentTree = env.ContentTree
+  page            = env.plugins.MarkdownPage
+  ContentTree     = env.ContentTree
+  ContentPlugin   = env.ContentPlugin
+
+  nest = (tree) ->
+    ### Return all the items in the *tree* as an array of content plugins. ###
+    index = tree[ 'index.md' ]
+    index.topics = []
+    for key, value of tree
+      if key == 'index.md'
+        # skip
+      else if value instanceof ContentTree
+        index.topics.push nest value
+      else if value instanceof ContentPlugin
+        index.topics.push value
+      else
+        # skip
+    return index
 
   onePagerView = (env, locals, contents, templates, callback) ->
     ### Behaves like templateView but allso adds topics to the context ###
@@ -30,7 +46,7 @@ module.exports = (env, callback) ->
 
   class OnePagerPage extends page
     directory: null
-    topics: {}
+    topics: []
 
     constructor: ( @filepath, @metadata, @markdown ) ->
       @directory = path.dirname( @filepath.full )
@@ -39,7 +55,9 @@ module.exports = (env, callback) ->
 
     setTopics: ->
       ContentTree.fromDirectory env, @directory, ( err, tree ) =>
-        @topics = ContentTree.flatten( tree )[1..]
+        tree = nest tree
+        @topics = tree.topics
+        console.log @topics
 
     @property 'description', 'getDescription'
     getDescription: ->
