@@ -1,6 +1,6 @@
 ---
 title: "model"
-description: "provides model(s) to be used by the controller and the view"
+description: "provides data to be used by the controller and the view"
 arguments:
     params: "optional - object with values extracted from the url"
 return:

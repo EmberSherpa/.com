@@ -5,7 +5,10 @@ mixin topics(topics)
     for topic in topics
       li.topic
         a(href=topic.url)= topic.title
-        = topic.getDescription()
+        span.arguments= topic.argument_names
+        if topic.description
+          &#160;-&#160;
+          = topic.description
         +topics( topic.topics )
 
 block content

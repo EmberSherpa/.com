@@ -57,11 +57,33 @@ module.exports = (env, callback) ->
       ContentTree.fromDirectory env, @directory, ( err, tree ) =>
         tree = nest tree
         @topics = tree.topics
-        console.log @topics
 
     @property 'description', 'getDescription'
     getDescription: ->
       if @metadata.description then @metadata.description
+
+    @property 'arguments', 'getArguments'
+    getArguments: ->
+      if @metadata.arguments then @metadata.arguments
+
+    @property 'argument_names', 'getArgumentNames'
+    getArgumentNames: ->
+      args = @getArguments()
+      result = ""
+      if args
+        result = "( "
+        i = 0
+        console.log args.length
+        for key, value of args
+          i = i + 1
+          result += key
+          if i != Object.keys(args).length
+            result += ", "
+        result += " )"
+      return result
+
+
+
 
   OnePagerPage.fromFile = (args...) ->
     page.fromFile.apply(this, args)
