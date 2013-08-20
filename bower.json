@@ -10,7 +10,6 @@
   ],
   "devDependencies": {
     "typeahead.js": "~0.9.3",
-    "bootstrap": "~2.3.2",
-    "flatui": "git://github.com/iurevych/Flat-UI.git"
+    "bootstrap": "~2.3.2"
   }
 }

@@ -2,7 +2,7 @@
 title: "Single Source of Truth"
 tokens: [ "model", "models" ]
 template: index.jade
-description: rule that dictates that there should only ever be one source of data
+description: dictates that there should only one source of data
 ---
 
 For example, a model is the single source of truth for the data that it contains. Handlebars in templates are bound to

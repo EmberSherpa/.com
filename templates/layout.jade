@@ -11,20 +11,18 @@ html(lang='en')
         block title
           = locals.name
       link(rel='stylesheet', href='/css/bootstrap.css')
-      link(rel='stylesheet', href='/css/flatui.css')
+      link(rel='stylesheet', href='/css/flat-ui.css')
       link(rel='stylesheet', href='/css/style.css')
   body(class=bodyclass)
-    header.header
-      div.content-wrap
-        block header
-          div.logo
-            h1
-              a(href=locals.url)= locals.name
-            p.description= locals.description
-    div#content
-      div.content-wrap
+    div.navbar
+      div.navbar-inner
+        div.container
+          button.btn.btn-navbar(type=button,data-toggle=collapse)
+          a.brand(href='/') Ember Sherpa
+          div.nav-collapse.collapse
+            ul.nav
+              li
+                a(href='/cheatsheet') Cheatsheet
+    div.container
+      div.row
         block content
-    footer
-      div.content-wrap
-        block footer
-          section.about

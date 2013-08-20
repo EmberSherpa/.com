@@ -4,3 +4,5 @@ out/
 docpad-debug.log
 /components/
 .sass-cache/
+plugins/*.js
+plugins/*.map

@@ -1,4 +1,4 @@
 ---
-title: "events"
+title: Routing
 template: index.jade
 ---

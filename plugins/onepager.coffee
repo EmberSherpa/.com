@@ -2,6 +2,7 @@ module.exports = (env, callback) ->
 
   utils = env.utils
   path  = require 'path'
+  _     = require 'underscore'
 
   page            = env.plugins.MarkdownPage
   ContentTree     = env.ContentTree
@@ -39,6 +40,7 @@ module.exports = (env, callback) ->
       env: env
       page: this
       contents: contents
+      breadcrumbs: @getBreadcrumbs( contents )
 
     env.utils.extend ctx, locals
 
@@ -82,13 +84,40 @@ module.exports = (env, callback) ->
         result += " )"
       return result
 
+    @property 'api_url', 'getAPIUrl'
+    getAPIUrl: ->
+      if @metadata.api_url then @metadata.api_url
 
-
+    getBreadcrumbs: ( tree ) ->
+      items = []
+      item = path.dirname @filepath.relative
+      while item != '.'
+        items.push "/#{item}/"
+        item = path.dirname item
+      items.push '/'
+      items.reverse()
+      flat = ContentTree.flatten( tree )
+      items = _.map( items, ( url ) ->
+        filtered = flat.filter (page) ->
+          matched = page.getUrl() == url
+          if matched then page.last = false
+          return matched
+        return filtered[0]
+        )
+      items[ items.length - 1 ].last = true
+      return items
 
   OnePagerPage.fromFile = (args...) ->
     page.fromFile.apply(this, args)
 
-  env.registerContentPlugin 'topics', 'topics/**', OnePagerPage
+  env.helpers.breadcrumbText = ( page ) ->
+    console.log page.metadata
+    if page.metadata && page.metadata.breadcrumb
+      page.metadata.breadcrumb
+    else
+      page.metadata.title
+
+  env.registerContentPlugin 'cheatsheet', 'cheatsheet/**', OnePagerPage
 
   # register the template view used by the page plugin
   env.registerView 'onepager', onePagerView

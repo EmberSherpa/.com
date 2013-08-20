@@ -1,19 +1,37 @@
 extends layout
 
+mixin breadcrumb
+  ul.breadcrumb
+    for breadcrumb in breadcrumbs
+        if breadcrumb.last
+          li.active
+            = env.helpers.breadcrumbText(breadcrumb)
+        else
+          li
+            a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
+
+mixin space
+  &#160;
+
 mixin topics(topics)
   ul.topics
     for topic in topics
       li.topic
-        a(href=topic.url)= topic.title
+        a( href=topic.url )= topic.title
         span.arguments= topic.argument_names
         if topic.description
-          &#160;-&#160;
+          +space
+          -
+          +space
           = topic.description
+          +space
+        if topic.api_url
+          a.api( href=topic.api_url ) api
         +topics( topic.topics )
 
 block content
+  +breadcrumb
   article.article.intro
     header
-      h2
-        a(href=page.url)= page.title
+      h2= page.title
   +topics( page.topics )

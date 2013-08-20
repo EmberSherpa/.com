@@ -1,5 +1,5 @@
 ---
-title: "Topics"
+title: "Cheatsheet"
 template: index.jade
 ---
 
