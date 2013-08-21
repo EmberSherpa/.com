@@ -10,9 +10,9 @@ html(lang='en')
       title
         block title
           = locals.name
-      link(rel='stylesheet', href='/css/bootstrap.css')
-      link(rel='stylesheet', href='/css/flat-ui.css')
-      link(rel='stylesheet', href='/css/style.css')
+      link(rel='stylesheet', href='/assets/css/bootstrap.css')
+      link(rel='stylesheet', href='/assets/css/flat-ui.css')
+      link(rel='stylesheet', href='/assets/css/style.css')
   body(class=bodyclass)
     div.navbar
       div.navbar-inner
@@ -26,3 +26,11 @@ html(lang='en')
     div.container
       div.row
         block content
+    div.bottom-menu.bottom-menu-inverse
+      div.container
+        div.row
+          div.span2.brand
+            a(href="/") Ember Sherpa
+          div.span8
+          div.span2
+    script(src="/scripts/ember-sherpa.js")

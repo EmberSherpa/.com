@@ -1,0 +1,7 @@
+{
+  "title": "Cancel Transition Test",
+  "template": "test.jade",
+  "scripts": [
+    "cancel-transition.js"
+  ]
+}

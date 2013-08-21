@@ -17,7 +17,7 @@ module.exports = (env, callback) ->
         # skip
       else if value instanceof ContentTree
         index.topics.push nest value
-      else if value instanceof ContentPlugin
+      else if value instanceof OnePagerPage
         index.topics.push value
       else
         # skip
@@ -75,7 +75,6 @@ module.exports = (env, callback) ->
       if args
         result = "( "
         i = 0
-        console.log args.length
         for key, value of args
           i = i + 1
           result += key
@@ -111,13 +110,12 @@ module.exports = (env, callback) ->
     page.fromFile.apply(this, args)
 
   env.helpers.breadcrumbText = ( page ) ->
-    console.log page.metadata
     if page.metadata && page.metadata.breadcrumb
       page.metadata.breadcrumb
     else
       page.metadata.title
 
-  env.registerContentPlugin 'cheatsheet', 'cheatsheet/**', OnePagerPage
+  env.registerContentPlugin 'cheatsheet', 'cheatsheet/**/*.*(markdown|mkd|md)', OnePagerPage
 
   # register the template view used by the page plugin
   env.registerView 'onepager', onePagerView

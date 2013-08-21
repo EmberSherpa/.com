@@ -20,17 +20,18 @@
     "npm": "1.2"
   },
   "dependencies": {
-    "moment": "2.x",
-    "underscore": "1.4.x",
-    "typogr": "0.5.x"
   },
   "devDependencies": {
+    "moment": "2.x",
+    "underscore": "1.4.x",
+    "typogr": "0.5.x",
     "bower": "~1.1.2",
     "grunt": "~0.4.1",
     "grunt-concurrent": "~0.3.0",
     "grunt-open": "~0.2.2",
     "grunt-contrib-watch": "~0.5.1",
     "wintersmith-less": "~0.2.1",
-    "wintersmith-sass": "~0.2.1"
+    "grunt-wintersmith": "0.0.2",
+    "wintersmith": "~2.0.5"
   }
 }
