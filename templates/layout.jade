@@ -14,23 +14,8 @@ html(lang='en')
       link(rel='stylesheet', href='/assets/css/flat-ui.css')
       link(rel='stylesheet', href='/assets/css/style.css')
   body(class=bodyclass)
-    div.navbar
-      div.navbar-inner
-        div.container
-          button.btn.btn-navbar(type=button,data-toggle=collapse)
-          a.brand(href='/') Ember Sherpa
-          div.nav-collapse.collapse
-            ul.nav
-              li
-                a(href='/cheatsheet') Cheatsheet
+    include header
     div.container
       div.row
         block content
-    div.bottom-menu.bottom-menu-inverse
-      div.container
-        div.row
-          div.span2.brand
-            a(href="/") Ember Sherpa
-          div.span8
-          div.span2
-    script(src="/scripts/ember-sherpa.js")
+    include footer

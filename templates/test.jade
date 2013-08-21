@@ -1,4 +1,6 @@
+include mixins
 !!! 5
+- var parent = page.parent['index.md']
 html(lang='en')
   head
     block head
@@ -8,11 +10,30 @@ html(lang='en')
       title
         block title
           = locals.name
+      link(rel='stylesheet', href='/assets/css/bootstrap.css')
+      link(rel='stylesheet', href='/assets/css/flat-ui.css')
+      link(rel='stylesheet', href='/assets/css/style.css')
       link(rel='stylesheet', href='/assets/css/qunit.css')
   body
-    div#qunit
-    scritp(src="/assets/js/jquery.js")
+    include header
+    div.container-fluid
+      div.row-fluid.mbl
+        a.btn.btn-primary.btn-huge(href=parent.url) Back to
+          +space
+          = parent.title
+      div.row-fluid.mbl
+        div.span4
+          h4 Code
+          code will go here
+        div.span4
+          h4 App
+          div#app
+        div.span4
+          h4 Tests
+          div#qunit
+
+    include footer
     script(src="/assets/js/qunit.js")
-    for s in scripts
+    for s in page.metadata.scripts
       script(src=s)
 

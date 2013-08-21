@@ -1,4 +1,5 @@
 extends layout
+include mixins
 
 mixin breadcrumb
   ul.breadcrumb
@@ -9,9 +10,6 @@ mixin breadcrumb
         else
           li
             a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
-
-mixin space
-  &#160;
 
 mixin topics(topics)
   ul.topics
