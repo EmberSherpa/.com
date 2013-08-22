@@ -4,9 +4,10 @@ module.exports = (env, callback) ->
   path  = require 'path'
   _     = require 'underscore'
 
-  page            = env.plugins.MarkdownPage
-  ContentTree     = env.ContentTree
-  ContentPlugin   = env.ContentPlugin
+  MarkdownPage      = env.plugins.MarkdownPage
+  ContentTree       = env.ContentTree
+  ContentPlugin     = env.ContentPlugin
+  apply_shortcodes  = env.plugins.apply_shortcodes
 
   nest = (tree) ->
     ### Return all the items in the *tree* as an array of content plugins. ###
@@ -46,7 +47,7 @@ module.exports = (env, callback) ->
 
     template.render ctx, callback
 
-  class OnePagerPage extends page
+  class OnePagerPage extends MarkdownPage
     directory: null
     topics: []
 
@@ -59,6 +60,15 @@ module.exports = (env, callback) ->
       ContentTree.fromDirectory env, @directory, ( err, tree ) =>
         tree = nest tree
         @topics = tree.topics
+
+    @property 'html', 'getHtml'
+    getHtml: (base=env.config.baseUrl) ->
+      @markdown = env.plugins.apply_shortcodes.call @, @markdown
+      rendered = super base
+      console.log "[Rendered]"
+      console.log rendered
+      console.log "[/Rendered]"
+      return rendered
 
     @property 'description', 'getDescription'
     getDescription: ->
@@ -102,12 +112,12 @@ module.exports = (env, callback) ->
           if matched then page.last = false
           return matched
         return filtered[0]
-        )
+      )
       items[ items.length - 1 ].last = true
       return items
 
   OnePagerPage.fromFile = (args...) ->
-    page.fromFile.apply(this, args)
+    MarkdownPage.fromFile.apply(this, args)
 
   env.helpers.breadcrumbText = ( page ) ->
     if page.metadata && page.metadata.breadcrumb
@@ -115,12 +125,11 @@ module.exports = (env, callback) ->
     else
       page.metadata.title
 
-  env.registerContentPlugin 'cheatsheet', 'cheatsheet/**/*.*(markdown|mkd|md)', OnePagerPage
+  env.registerContentPlugin 'topics', 'cheatsheet/**/*.*(markdown|mkd|md)', OnePagerPage
 
   # register the template view used by the page plugin
   env.registerView 'onepager', onePagerView
 
-  env.registerGenerator 'onepager', (contents, callback) ->
-    callback null, contents
+  env.plugins.OnePagerPage = OnePagerPage
 
   callback()

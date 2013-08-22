@@ -7,7 +7,10 @@
   },
   "plugins": [
     "./node_modules/wintersmith-less",
-    "./plugins/onepager"
+    "./plugins/onepager",
+    "./plugins/codemodule",
+    "./plugins/shortcodes",
+    "./plugins/codemodule-shortcode"
   ],
   "require": {
     "moment": "moment",
@@ -19,6 +22,6 @@
   },
   "markdown": {
     "smartLists": true,
-    "smartypants": true
+    "sanitize": false
   }
 }

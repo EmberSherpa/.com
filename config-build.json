@@ -18,7 +18,6 @@
     "pretty": true
   },
   "markdown": {
-    "smartLists": true,
-    "smartypants": true
+    "smartLists": true
   }
 }

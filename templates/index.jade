@@ -22,11 +22,13 @@ mixin topics(topics)
         +topics( topic.topics )
 
 block content
-  +breadcrumb
-  article.article.intro
-    header
-      h2= page.title
-  div.container-fluid
+  article.container-fluid
     div.row-fluid
-      div.span3
+      div.span6
+        +breadcrumb
+        header
+          h2= page.title
+        != page.html
         +topics( page.topics )
+      div.span6
+        +disqus()

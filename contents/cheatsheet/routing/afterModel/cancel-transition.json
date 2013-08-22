@@ -1,6 +1,0 @@
-{
-  "template": "test.jade",
-  "scripts": [
-    "cancel-transition.js"
-  ]
-}

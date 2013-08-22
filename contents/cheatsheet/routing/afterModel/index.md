@@ -8,3 +8,6 @@ api_url: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
 template: index.jade
 ---
 
+This hook is *executed* when model is resolved.
+
+[codemodule src="cancel-transition"]

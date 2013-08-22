@@ -19,8 +19,7 @@
     "node": "0.10",
     "npm": "1.2"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "moment": "2.x",
     "underscore": "1.4.x",
@@ -32,6 +31,9 @@
     "grunt-contrib-watch": "~0.5.1",
     "wintersmith-less": "~0.2.1",
     "grunt-wintersmith": "0.0.2",
-    "wintersmith": "~2.0.5"
+    "wintersmith": "~2.0.5",
+    "async": "~0.2.9",
+    "highlight": "~0.2.3",
+    "jade": "~0.35.0"
   }
 }

@@ -12,8 +12,9 @@ html(lang='en')
           = locals.name
       link(rel='stylesheet', href='/assets/css/bootstrap.css')
       link(rel='stylesheet', href='/assets/css/flat-ui.css')
-      link(rel='stylesheet', href='/assets/css/style.css')
+      link(rel='stylesheet', href='/assets/css/highlight.css')
       link(rel='stylesheet', href='/assets/css/qunit.css')
+      link(rel='stylesheet', href='/assets/css/style.css')
   body
     include header
     div.container-fluid
@@ -21,19 +22,20 @@ html(lang='en')
         a.btn.btn-primary.btn-huge(href=parent.url) Back to
           +space
           = parent.title
-      div.row-fluid.mbl
-        div.span4
-          h4 Code
-          code will go here
-        div.span4
-          h4 App
-          div#app
-        div.span4
-          h4 Tests
-          div#qunit
-
+      div.row-fluid
+        row.span6
+          div.row-fluid.mbl
+            h4 Code
+            +highlight(page.code)
+          div.row-fluid.mbl
+            h4 Tests
+            +highlight(page.tests)
+          div.row-fluid.mbl
+            h4 Test Results
+            script(type="text/javascript")= page.code
+            script(type="text/javascript")= page.tests
+            div.mtl#qunit
+        row.span6
+          +disqus()
     include footer
     script(src="/assets/js/qunit.js")
-    for s in page.metadata.scripts
-      script(src=s)
-
