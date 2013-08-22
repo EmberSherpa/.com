@@ -10,7 +10,8 @@
     "./plugins/onepager",
     "./plugins/codemodule",
     "./plugins/shortcodes",
-    "./plugins/codemodule-shortcode"
+    "./plugins/codemodule-shortcode",
+    "./plugins/typeahead"
   ],
   "require": {
     "moment": "moment",

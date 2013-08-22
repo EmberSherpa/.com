@@ -74,6 +74,9 @@ module.exports = (env, callback) ->
     getArguments: ->
       if @metadata.arguments then @metadata.arguments
 
+    @property 'tokens', ->
+      if @metadata.tokens then @metadata.tokens
+
     @property 'argument_names', 'getArgumentNames'
     getArgumentNames: ->
       args = @getArguments()
