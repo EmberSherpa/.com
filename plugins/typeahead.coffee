@@ -11,16 +11,16 @@ module.exports = ( env, callback ) ->
         # locals, contents etc not used in this plugin
 
         items = []
-        delete contents[ 'typeahead.json' ]
         flat = ContentTree.flatten( contents )
         for page in flat
-          item =
-            title: page.title
-            url: page.url
-            value: page.filepath.relative
-            description: page.description ? ''
-            tokens: page.tokens ? []
-          items.push item
+          if page.title
+            item =
+              title: page.title
+              url: page.url
+              value: page.filename
+              description: page.description ? ''
+              tokens: page.tokens ? []
+            items.push item
         buffer = new Buffer( JSON.stringify(items) )
         callback null, buffer
 
