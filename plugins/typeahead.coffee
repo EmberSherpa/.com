@@ -11,6 +11,7 @@ module.exports = ( env, callback ) ->
         # locals, contents etc not used in this plugin
 
         items = []
+        delete contents[ 'typeahead.json' ]
         flat = ContentTree.flatten( contents )
         for page in flat
           item =
