@@ -17,12 +17,13 @@ module.exports = ( env, callback ) ->
         # create attribute dictionary
         attributes = {}
 
-        for entry in attribstr.split ' '
-          offset = entry.indexOf('=')
-          key = entry.substring(0, offset)
-          value = entry.substring(offset + 1)
-          value = value.replace /"/g, ''
-          attributes[key] = value if key != ""
+        if attribstr?
+          for entry in attribstr.split ' '
+            offset = entry.indexOf('=')
+            key = entry.substring(0, offset)
+            value = entry.substring(offset + 1)
+            value = value.replace /"/g, ''
+            attributes[key] = value if key != ""
 
         # strip closing tag off content if exists
         content = content.substring(0, content.lastIndexOf('[/')) if content?

@@ -7,7 +7,6 @@ module.exports = ( env, callback ) ->
   jade                = require( 'jade' )
 
   register_shortcode 'codemodule', ( attr, content ) ->
-    if not attr.src? then return "src attribute is missing from code module shortcode"
     unless @ instanceof ContentPlugin then logger.log( logger.WARN, "You have to bind apply_shortcodes to the page, try apply_shortcodes.call(@, content)" )
 
     template = """
@@ -21,7 +20,7 @@ div.codemodule.embed
   a.btn.btn-small.btn-info(href=url) Run Tests
 """
 
-    name = attr.src + ".coffee"
+    name = content + ".coffee"
     # check that src Code Module exists
     if not @parent[ name ]? then return name + " does not exist."
 

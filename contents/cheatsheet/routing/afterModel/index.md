@@ -10,4 +10,4 @@ template: index.jade
 
 This hook is *executed* when model is resolved.
 
-[codemodule src="cancel-transition"]
+[codemodule]cancel-transition[/codemodule]

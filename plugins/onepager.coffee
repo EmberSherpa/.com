@@ -63,12 +63,8 @@ module.exports = (env, callback) ->
 
     @property 'html', 'getHtml'
     getHtml: (base=env.config.baseUrl) ->
-      @markdown = env.plugins.apply_shortcodes.call @, @markdown
       rendered = super base
-      console.log "[Rendered]"
-      console.log rendered
-      console.log "[/Rendered]"
-      return rendered
+      return env.plugins.apply_shortcodes.call @, rendered
 
     @property 'description', 'getDescription'
     getDescription: ->
