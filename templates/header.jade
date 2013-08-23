@@ -1,9 +1,15 @@
-div.navbar
-  div.navbar-inner
-    div.container
-      button.btn.btn-navbar(type=button,data-toggle=collapse)
-      a.brand(href='/') Ember Sherpa
-      div.nav-collapse.collapse
-        ul.nav
-          li
-            a(href='/cheatsheet') Cheatsheet
+header
+  div.navbar.container
+    div.navbar-inner
+      div.container
+        button.btn.btn-navbar(type=button,data-toggle=collapse)
+        a.brand(href='/') Ember Sherpa
+        div.nav-collapse.collapse
+          ul.nav
+            li
+              form.navbar-search.form-search
+                input.search-query(type="text",placeholder="keyword shortcut")
+                script(type="text/x-handlebars-template",id="suggestion").
+
+            li
+              a(href='/cheatsheet') Cheatsheet

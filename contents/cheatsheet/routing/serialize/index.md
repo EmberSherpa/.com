@@ -2,7 +2,9 @@
 title: "serialize"
 template: index.jade
 arguments:
-    model: required to use when creating hash of url parameters
+    model:
+        required: true
+        description: used when creating object hash with url parameters
 description: converts model into parameters for the url
 return: hash object
 ---

@@ -2,8 +2,12 @@
 title: "renderTemplate"
 description: "hook to override default template rendered for this route"
 arguments:
-    controller: "required - controller object instantiated for this route"
-    model: "optional - model(s) that were returned by route's model property"
+    controller:
+        required: true
+        description: controller object instantiated for this route"
+    model:
+        required: false
+        description: model(s) that were returned by route's model property"
 template: index.jade
 ---
 

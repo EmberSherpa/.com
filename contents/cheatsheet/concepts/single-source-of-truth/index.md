@@ -1,6 +1,6 @@
 ---
 title: "Single Source of Truth"
-tokens: [ "model", "models" ]
+tags: [ "model", "models" ]
 template: index.jade
 description: dictates that there should only one source of data
 ---

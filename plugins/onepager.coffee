@@ -74,8 +74,8 @@ module.exports = (env, callback) ->
     getArguments: ->
       if @metadata.arguments then @metadata.arguments
 
-    @property 'tokens', ->
-      if @metadata.tokens then @metadata.tokens
+    @property 'tags', ->
+      if @metadata.tags then @metadata.tags
 
     @property 'argument_names', 'getArgumentNames'
     getArgumentNames: ->
@@ -130,5 +130,7 @@ module.exports = (env, callback) ->
   env.registerView 'onepager', onePagerView
 
   env.plugins.OnePagerPage = OnePagerPage
+
+  env.helpers.nest = nest
 
   callback()

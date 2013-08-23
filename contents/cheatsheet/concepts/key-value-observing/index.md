@@ -2,7 +2,7 @@
 title: "Key Value Observing - KVO"
 template: index.jade
 description: code pattern that allows an object to be notified when a property of another object is changed
-tokens: [ "two way binding", "one way binding", "kvo" ]
+tags: [ "two way binding", "one way binding", "kvo" ]
 ---
 
 * Key Value Observing is used to enable One Way and Two Way binding.

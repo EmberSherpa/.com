@@ -2,9 +2,13 @@
 title: "setupController"
 description: "function that can be used to configure the controller"
 arguments:
-    controller: "required - controller object instantiated for this route"
-    model: "optional - model(s) that were returned by route's model property"
-tokens: [ "controller", "model" ]
+    controller:
+        required: true
+        description: controller object instantiated for this route"
+    model:
+        required: false
+        description: model(s) that were returned by route's model property"
+tags: [ "controller", "model" ]
 template: index.jade
 ---
 

@@ -11,6 +11,7 @@
   "devDependencies": {
     "typeahead.js": "~0.9.3",
     "bootstrap": "~2.3.2",
-    "qunit": "~1.12.0"
+    "qunit": "~1.12.0",
+    "handlebars": "~1.0.0"
   }
 }
