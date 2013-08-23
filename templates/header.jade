@@ -6,10 +6,18 @@ header
         a.brand(href='/') Ember Sherpa
         div.nav-collapse.collapse
           ul.nav
-            li
+            li.search
               form.navbar-search.form-search
                 input.search-query(type="text",placeholder="keyword shortcut")
-                script(type="text/x-handlebars-template",id="suggestion").
-
+                script(type="text/x-handlebars-template",id="suggestion-template").
+                  <p class="suggestion-title">{{value}}{{#arguments}}{{/arguments}}</p>
+                  <p class="suggestion-parent">
+                    {{#if parent}}
+                      {{#with parent}}
+                        <a href="{{url}}">{{value}}</a>
+                      {{/with}}
+                    {{/if}}
+                  </p>
+                  <p class="suggestion-description">{{description}}</p>
             li
               a(href='/cheatsheet') Cheatsheet

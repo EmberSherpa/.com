@@ -22,6 +22,7 @@ module.exports = ( env, callback ) ->
             description: page.description ? ''
             tokens: tokens
             parent: parent
+            arguments: page.arguments ? []
 
         add_to_items = ( page, parent ) =>
           @items.push make_item page, parent
