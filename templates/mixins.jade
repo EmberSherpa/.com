@@ -22,3 +22,21 @@ mixin disqus
       dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
+
+mixin args( args )
+  - var values = Object.keys( args ).map( function(key) { return args[ key ] } )
+  - var keys = Object.keys( args )
+  - var length = keys.length
+  span.args
+    = "( "
+    each name, index in keys
+      - var info = values[ index ]
+      if info.required
+        strong
+          = name
+      else
+        = name
+      if index < length - 1
+        = ", "
+      - count = count + 1
+    = " )"

@@ -9,6 +9,9 @@ module.exports = (env, callback) ->
   ContentPlugin     = env.ContentPlugin
   apply_shortcodes  = env.plugins.apply_shortcodes
 
+  marked            = require 'marked'
+  marked.setOptions env.config.markdown or {}
+
   nest = (tree) ->
     ### Return all the items in the *tree* as an array of content plugins. ###
     index = tree[ 'index.md' ]
@@ -70,27 +73,12 @@ module.exports = (env, callback) ->
     getDescription: ->
       if @metadata.description then @metadata.description
 
-    @property 'arguments', 'getArguments'
-    getArguments: ->
-      if @metadata.arguments then @metadata.arguments
-
     @property 'tags', ->
       if @metadata.tags then @metadata.tags
 
-    @property 'argument_names', 'getArgumentNames'
-    getArgumentNames: ->
-      args = @getArguments()
-      result = ""
-      if args
-        result = "( "
-        i = 0
-        for key, value of args
-          i = i + 1
-          result += key
-          if i != Object.keys(args).length
-            result += ", "
-        result += " )"
-      return result
+    @property 'arguments', 'getArguments'
+    getArguments: ->
+      if @metadata.arguments? then return @metadata.arguments else return false
 
     @property 'api_url', 'getAPIUrl'
     getAPIUrl: ->
@@ -132,5 +120,6 @@ module.exports = (env, callback) ->
   env.plugins.OnePagerPage = OnePagerPage
 
   env.helpers.nest = nest
+  env.helpers.marked = marked
 
   callback()

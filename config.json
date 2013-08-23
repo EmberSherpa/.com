@@ -23,6 +23,9 @@
   },
   "markdown": {
     "smartLists": true,
-    "sanitize": false
+    "sanitize": false,
+    "gfm": true,
+    "tables": true,
+    "breaks": true
   }
 }
