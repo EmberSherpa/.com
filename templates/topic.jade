@@ -1,0 +1,10 @@
+extends layout
+include mixins
+
+block content
+  article.container-fluid
+    div.row-fluid
+      if page.comments
+        include topic-comments-on
+      else
+        include topic-comments-off

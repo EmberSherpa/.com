@@ -84,6 +84,10 @@ module.exports = (env, callback) ->
     getAPIUrl: ->
       if @metadata.api_url then @metadata.api_url
 
+    @property 'comments', ->
+      console.log @metadata
+      if @metadata.comments? then return @metadata.comments else return true
+
     getBreadcrumbs: ( tree ) ->
       items = []
       item = path.dirname @filepath.relative

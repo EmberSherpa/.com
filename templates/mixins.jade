@@ -40,3 +40,22 @@ mixin args( args )
         = ", "
       - count = count + 1
     = " )"
+
+mixin breadcrumb
+  ul.breadcrumb
+    for breadcrumb in breadcrumbs
+      if breadcrumb.last
+        li.active
+          = env.helpers.breadcrumbText(breadcrumb)
+      else
+        li
+          a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
+
+mixin topics(topics)
+  ul.topics
+    for topic in topics
+      li.topic
+        a( href=topic.url )= topic.title
+        if topic.arguments
+          +args( topic.arguments )
+        +topics( topic.topics )

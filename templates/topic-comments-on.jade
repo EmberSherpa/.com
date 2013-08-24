@@ -1,0 +1,10 @@
+include mixins
+
+div.span6
+  +breadcrumb
+  header
+    h2= page.title
+  != page.html
+  +topics( page.topics )
+div.span6
+  +disqus()
