@@ -2,5 +2,5 @@
 title: classNames
 template: topic.jade
 tags: [ class, classNamesBindings ]
-description:
+description: array or string of View's class attribute
 ---
