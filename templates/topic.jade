@@ -4,7 +4,10 @@ include mixins
 block content
   article.container-fluid
     div.row-fluid
-      if page.comments
-        include topic-comments-on
-      else
-        include topic-comments-off
+      div.span6
+        +breadcrumb
+        header
+          h2= page.title
+        != page.html
+      div.span6
+        +topics( page.topics )

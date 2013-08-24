@@ -7,7 +7,7 @@ arguments:
     keyName:
         required: true
         description: name of property to set value for
-    value
+    value:
         required: true
         description: value to be set
 ---
