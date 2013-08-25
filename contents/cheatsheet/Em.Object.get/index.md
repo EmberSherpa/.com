@@ -1,5 +1,5 @@
 ---
-title: get
+title: Em.Object.get
 template: topic.jade
 tags: [ object ]
 description: return value of property by given name while respecting computed and observed properties

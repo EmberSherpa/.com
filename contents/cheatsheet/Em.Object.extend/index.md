@@ -1,5 +1,5 @@
 ---
-title: extend
+title: Em.Object.extend
 template: topic.jade
 tags: [ object ]
 description: declare a new class that extends Ember.Object

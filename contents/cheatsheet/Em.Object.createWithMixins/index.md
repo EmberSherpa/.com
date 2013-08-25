@@ -1,5 +1,5 @@
 ---
-title: createWithMixins
+title: Em.Object.createWithMixins
 template: topic.jade
 tags: [ object, create, mixins ]
 description: create an instance of an object with mixins

@@ -1,5 +1,5 @@
 ---
-title: create
+title: Em.Object.create
 template: topic.jade
 tags: [ 'object' ]
 description: create an instance of an object
