@@ -1,7 +1,7 @@
 ---
 title: "Cheatsheet"
-template: topic.jade
+template: cheatsheet.jade
 comments: false
+breadcrumbs: false
+bodyclass: cheatsheet
 ---
-
-Hello World

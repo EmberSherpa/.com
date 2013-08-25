@@ -1,0 +1,11 @@
+extends layout
+include mixins
+
+block content
+  article.container-fluid
+    div.row-fluid
+      div.span12
+        header.mbl
+          h2= page.title
+        != page.html
+        +topics( page.topics, 0 )

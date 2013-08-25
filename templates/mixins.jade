@@ -41,21 +41,38 @@ mixin args( args )
       - count = count + 1
     = " )"
 
-mixin breadcrumb
-  ul.breadcrumb
-    for breadcrumb in breadcrumbs
-      if breadcrumb.last
-        li.active
-          = env.helpers.breadcrumbText(breadcrumb)
-      else
-        li
-          a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
-
-mixin topics(topics)
+mixin topics(topics, depth)
+  - if ( !depth ) depth = 0
+  - depth = depth + 1
+  - var classes = [ 'topic', 'level-' + depth.toString() ]
   ul.topics
     for topic in topics
-      li.topic
-        a( href=topic.url )= topic.title
-        if topic.arguments
-          +args( topic.arguments )
-        +topics( topic.topics )
+      li(class=classes)
+        h5
+          a( href=topic.url )= topic.title
+          if topic.arguments
+            +args( topic.arguments )
+        if topic.description
+          p= "// " + topic.description
+        if topic.topics.length
+          +topics( topic.topics, depth )
+
+mixin breadcrumb
+  div.row-fluid.breadcrumbs
+    ul.breadcrumb.span8
+      for breadcrumb in breadcrumbs
+        if breadcrumb.last
+          li.active
+            = env.helpers.breadcrumbText(breadcrumb)
+        else
+          li
+            a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
+    div.span4.page-options.visible-desktop
+      +edit_button(page)
+
+mixin edit_button( page )
+  - var edit_url = env.config.repository.base + "/edit/master/contents" + page.url + "index.md"
+  a.gh-btn.pull-right(href=edit_url)
+    span.gh-ico
+    span.gh-text
+      = "Edit"

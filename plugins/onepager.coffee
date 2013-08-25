@@ -84,8 +84,11 @@ module.exports = (env, callback) ->
     getAPIUrl: ->
       if @metadata.api_url then @metadata.api_url
 
-    @property 'comments', ->
-      if @metadata.comments? then return @metadata.comments else return true
+    @property 'breadcrumbs', ->
+      if @metadata.breadcrumbs? then return @metadata.breadcrumbs else return true
+
+    @property 'bodyclass', ->
+      if @metadata.bodyclass? then return @metadata.bodyclass else return null
 
     getBreadcrumbs: ( tree ) ->
       items = []

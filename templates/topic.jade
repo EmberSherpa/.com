@@ -3,11 +3,16 @@ include mixins
 
 block content
   article.container-fluid
+    if page.breadcrumbs
+      +breadcrumb
     div.row-fluid
-      div.span6
-        +breadcrumb
-        header
-          h2= page.title
-        != page.html
-      div.span6
+      header
+        h2
+          = page.title
+          if page.arguments
+            +args( page.arguments )
+    div.row-fluid
+      div.span3.sidebar
         +topics( page.topics )
+      div.span9
+        != page.html

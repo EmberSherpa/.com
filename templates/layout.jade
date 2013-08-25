@@ -1,6 +1,6 @@
 !!! 5
 block vars
-  - var bodyclass = null;
+  - var bodyclass = page.bodyclass;
 html(lang='en')
   head
     block head
@@ -17,6 +17,6 @@ html(lang='en')
   body(class=bodyclass)
     include header
     div.container
-      div.row
+      div.row#content
         block content
     include footer
