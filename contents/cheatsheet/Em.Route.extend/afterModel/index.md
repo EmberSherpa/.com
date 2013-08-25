@@ -6,6 +6,7 @@ arguments:
         required: false
         description: resolved promise
     transition: optional - promise
+value: "function"
 api_url: http://emberjs.com/api/classes/Ember.Route.html#method_afterModel
 template: topic.jade
 ---

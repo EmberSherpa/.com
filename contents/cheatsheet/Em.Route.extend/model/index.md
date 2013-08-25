@@ -10,5 +10,6 @@ return:
     - an array of objects that contain data
     - a function that returns an object or a promise
     - a function that returns an an array of objects or a promise
+value: function
 template: topic.jade
 ---

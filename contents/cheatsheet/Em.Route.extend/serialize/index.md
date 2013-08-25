@@ -6,5 +6,6 @@ arguments:
         required: true
         description: used when creating object hash with url parameters
 description: converts model into parameters for the url
+value: function
 return: hash object
 ---

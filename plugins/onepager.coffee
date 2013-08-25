@@ -90,6 +90,52 @@ module.exports = (env, callback) ->
     @property 'bodyclass', ->
       if @metadata.bodyclass? then return @metadata.bodyclass else return null
 
+    @property 'value', 'getValue'
+    getValue: ->
+      if @metadata.value? then return @metadata.value else return undefined
+
+    @property 'highlight', ->
+      if @metadata.highlight? then return @metadata.highlight else return false
+
+    # return true if last argument is open ie. function( mixins, {
+    @property 'open', ->
+      last = @lastArg()
+      if last && last.open?
+        return last.open
+      if @getValue() == 'function'
+        return true
+      if @metadata.open?
+        return @metadata.open
+      return false
+
+    # return last argument
+    lastArg: ->
+      args = @getArguments()
+      if args
+        keys = Object.keys( args )
+        if keys.length
+          values = keys.map ( key )->
+            args[ key ]
+          last = values[ keys.length - 1 ]
+          return last
+      return null
+
+    lastArgName: ->
+      # return name of the last arg
+      args = @getArguments()
+      if args
+        keys = Object.keys( args )
+        return keys[keys.length - 1]
+      return null
+
+    # check if last argument is an object
+    @property 'last_arg_is_object', 'lastArgIsObject'
+    lastArgIsObject: ->
+      return @lastArg() && @lastArgName() == '{}'
+
+    @property 'open_is_function', ->
+      not @lastArgIsObject() && @getValue == 'function'
+
     getBreadcrumbs: ( tree ) ->
       items = []
       item = path.dirname @filepath.relative

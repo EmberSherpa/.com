@@ -1,6 +1,7 @@
 ---
 title: "renderTemplate"
 description: "hook to override default template rendered for this route"
+value: function
 arguments:
     controller:
         required: true

@@ -29,17 +29,27 @@ mixin args( args )
   - var length = keys.length
   span.args
     = "( "
+    - var open
     each name, index in keys
       - var info = values[ index ]
-      if info.required
-        strong
+      - open = info && info.open
+      unless open
+        if info.required
+          strong
+            = name
+        else
           = name
-      else
-        = name
       if index < length - 1
         = ", "
       - count = count + 1
-    = " )"
+    unless open
+      = " )"
+
+mixin value( value, highlight )
+  span
+    = ": "
+    - var stringy = value.toString()
+    != env.helpers.highlight( stringy )
 
 mixin topics(topics, depth)
   - if ( !depth ) depth = 0
@@ -50,12 +60,24 @@ mixin topics(topics, depth)
       li(class=classes)
         h5
           a( href=topic.url )= topic.title
+          if topic.value
+            +value( topic.value, topic.highlight )
+          else if topic.open
+            span= ": "
           if topic.arguments
             +args( topic.arguments )
+          if topic.open
+            span= "{"
         if topic.description
           p= "// " + topic.description
         if topic.topics.length
           +topics( topic.topics, depth )
+        if topic.open
+          span.h5
+            = "}"
+            if topic.last_arg_is_object
+              = " );"
+
 
 mixin breadcrumb
   div.row-fluid.breadcrumbs

@@ -10,6 +10,7 @@ arguments:
         description: model(s) that were returned by route's model property"
 tags: [ "controller", "model" ]
 template: topic.jade
+value: function
 ---
 
 WARNING: Function assigned to this property has to set the model into the controller, otherwise the controller won’t have a model to use

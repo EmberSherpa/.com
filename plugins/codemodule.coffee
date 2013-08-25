@@ -1,11 +1,15 @@
 module.exports = (env, callback) ->
 
-  path              = require 'path'
-  highlight         = require("highlight").Highlight
-  JsonPage          = env.plugins.JsonPage
+  path      = require 'path'
+  hljs      = require("highlight.js")
+  JsonPage  = env.plugins.JsonPage
 
   getFunctionBody = ( code ) ->
     code.substring(code.indexOf("{") + 1, code.lastIndexOf("}"));
+
+  highlight = ( code, language ) ->
+    if not language then language = 'javascript'
+    hljs.highlight( language, code ).value
 
   class CodeModulePage extends JsonPage
     constructor: ( @filepath, @metadata, @markdown ) ->
