@@ -24,9 +24,9 @@
     return buffer;
   });
 
-var searchQuery = 'input.search-query';
+var searchInput = 'input.search-query';
 $(document).ready( function(){
-  $( searchQuery ).typeahead({
+  $( searchInput ).typeahead({
     name: 'topics',
     prefetch: {
       url: '/cheatsheet.typeahead.json'
@@ -38,13 +38,16 @@ $(document).ready( function(){
       }
     }).keyup( function( e ){
       if ( e.keyCode === 27 ) {
-        $( searchQuery ).typeahead('setQuery', '' ).blur();
+        $( searchInput ).typeahead('setQuery', '' ).blur();
         e.stopPropagation();
       }
     });
   }).keyup( function( e ){
     if( e.keyCode === 27 ) {
-      $( searchQuery ).focus()
+      $( searchInput ).focus()
     }
+  });
+  $( '.go-to-search' ).click(function(){
+    $( searchInput ).focus();
   });
 })(jQuery);

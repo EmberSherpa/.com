@@ -17,7 +17,7 @@ include header
     .span6
       h4= "Searchable"
       img.thumbnail(src="/assets/images/searchable.jpg")
-      p= ""
+      p= "Hit "
         strong= "ESC "
         = "+ keyword to look up a method or a property."
     .span6
@@ -36,5 +36,13 @@ include header
         = "Code Examples "
         span.label.label-large.label-success= "coming soon"
       p= "Validated with tests "
+  .row
+    .btn-group
+      button.go-to-search.btn.btn-huge.btn-primary.mrl
+        = "Go to search "
+        i.icon-arrow-up
+      a.btn.btn-huge.btn-success(href="/cheatsheet/")
+        = "Go to cheatsheet "
+        i.icon-arrow-right
 
 include footer
