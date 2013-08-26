@@ -4,5 +4,29 @@ block header
   h1= page.title
 
 block content
-  article.article
-    section.content!= typogr(page.html).typogrify()
+  article
+    h2
+      span.ember="Ember.js"
+      =" cheatsheet and development companion"
+    .container-fluid.features
+      .row-fluid
+        .span6
+          h4= "Searchable"
+          img.thumbnail(src="searchable.jpg")
+          p= "Hit ESC and type a keyword to look up a method of a property."
+        .span6
+          h4= "Concise"
+          img.thumbnail(src="concise.jpg")
+          p= "All of the facts, none of the filler."
+      .row-fluid
+        .span6
+          h4= "Open Source"
+          p
+            i="Is something missing?"
+            = "- create a issue or submit a pull request on "
+            a(href="https://github.com/taras/ember-sherpa")= "GitHub"
+        .span6
+          h4
+            = "Code Examples "
+            span.label.label-large.label-success= "coming soon"
+          p= "Validated with tests "

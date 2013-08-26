@@ -2,7 +2,7 @@
 title: Em.Object.extend
 template: topic.jade
 tags: [ object ]
-description: declare a new class that is a descendant of Ember.Object
+description: create a new class that is a descendant of Ember.Object
 arguments:
     mixins:
         required: false
