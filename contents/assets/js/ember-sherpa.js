@@ -25,10 +25,9 @@
     return buffer;
   });
 
-
-
-$(document).ready(function(){
-  $('input.search-query').typeahead({
+var searchQuery = 'input.search-query';
+$(document).ready( function(){
+  $( searchQuery ).typeahead({
     name: 'topics',
     prefetch: {
       url: '/cheatsheet.typeahead.json'
@@ -38,10 +37,15 @@ $(document).ready(function(){
       if ( selected && selected.url ) {
         window.location.pathname = selected.url;
       }
+    }).keyup( function( e ){
+      if ( e.keyCode === 27 ) {
+        $( searchQuery ).typeahead('setQuery', '' ).blur();
+        e.stopPropagation();
+      }
     });
-  }).keyup(function(e){
+  }).keyup( function( e ){
     if( e.keyCode === 27 ) {
-      $( 'input.search-query' ).focus()
+      $( searchQuery ).focus()
     }
   });
 })(jQuery);
