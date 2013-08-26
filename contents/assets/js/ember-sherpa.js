@@ -7,7 +7,6 @@
     var buffer;
     if ( this.arguments ) {
       buffer = "( ";
-      var that = this;
       var args = Object.keys( this.arguments );
       args.forEach( function( name, index ) {
         var info = args[ name ];
