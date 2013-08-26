@@ -11,11 +11,12 @@ block content
         h2
           = page.title
           if page.arguments
-            +topic_args( page.arguments )
+            +topic_args( page.arguments, has_topics )
     .row-fluid
       .span12
         != page.html
-    .row-fluid
-      .span12
-        h3.mbl(id="properties")= "Properties"
-        +topics( page.topics )
+    if has_topics
+      .row-fluid
+        .span12
+          h3.mbl(id="properties")= "Properties"
+          +topics( page.topics )

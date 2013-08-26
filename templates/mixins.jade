@@ -44,7 +44,7 @@ mixin args( args )
     unless open
       = " )"
 
-mixin topic_args( args )
+mixin topic_args( args, has_topics )
   - var values = Object.keys( args ).map( function(key) { return args[ key ] } )
   - var keys = Object.keys( args )
   - var length = keys.length
@@ -53,7 +53,7 @@ mixin topic_args( args )
     each name, index in keys
       - var info = values[ index ]
       - var object = name == '{}'
-      if object
+      if object && has_topics
         a(href="#properties")
           if info.required
             strong
