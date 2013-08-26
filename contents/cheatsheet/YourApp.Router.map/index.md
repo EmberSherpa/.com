@@ -1,5 +1,5 @@
 ---
-title: App.Router.map
+title: YourApp.Router.map
 template: topic.jade
 tags: [ 'router' ]
 description: allows you to add routes and resources to your app

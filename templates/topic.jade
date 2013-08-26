@@ -5,14 +5,16 @@ block content
   article.container-fluid
     if page.breadcrumbs
       +breadcrumb
-    div.row-fluid
+    .row-fluid
       header
         h2
           = page.title
           if page.arguments
-            +args( page.arguments )
-    div.row-fluid
-      div.span3.sidebar
-        +topics( page.topics )
-      div.span9
+            +topic_args( page.arguments )
+    .row-fluid
+      .span12
         != page.html
+    .row-fluid
+      h3.mbl(id="properties")= "Properties"
+      .span12
+        +topics( page.topics )
