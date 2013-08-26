@@ -2,6 +2,7 @@ extends layout
 include mixins
 
 block content
+  - var has_topics = page.topics.length
   article.container-fluid
     if page.breadcrumbs
       +breadcrumb
@@ -15,6 +16,6 @@ block content
       .span12
         != page.html
     .row-fluid
-      h3.mbl(id="properties")= "Properties"
       .span12
+        h3.mbl(id="properties")= "Properties"
         +topics( page.topics )
