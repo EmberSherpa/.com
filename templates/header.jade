@@ -1,23 +1,37 @@
-header
-  div.navbar.container
-    div.navbar-inner
-      div.container
-        button.btn.btn-navbar(type=button,data-toggle=collapse)
-        a.brand(href='/') Ember Sherpa
-        div.nav-collapse.collapse
-          ul.nav
-            li.search
-              form.navbar-search.form-search
-                input.search-query(type="text",placeholder="keyword shortcut")
-                script(type="text/x-handlebars-template",id="suggestion-template").
-                  <p class="suggestion-title">{{value}}{{#arguments}}{{/arguments}}</p>
-                  <p class="suggestion-parent">
-                    {{#if parent}}
-                      {{#with parent}}
-                        <a href="{{url}}">{{value}}</a>
-                      {{/with}}
-                    {{/if}}
-                  </p>
-                  <p class="suggestion-description">{{description}}</p>
-            li
-              a(href='/cheatsheet/') Cheatsheet
+!!! 5
+block vars
+  - var bodyclass = page.bodyclass || page.metadata.bodyclass;
+html(lang='en')
+  head
+    block head
+      meta(charset='utf-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
+      meta(name='viewport', content='width=device-width')
+      title
+        block title
+          = locals.name
+      link(rel='stylesheet', href='/assets/css/style.css')
+  body(class=bodyclass)
+    header
+      div.navbar.container
+        div.navbar-inner
+          div.container
+            button.btn.btn-navbar(type=button,data-toggle=collapse)
+            a.brand(href='/') Ember Sherpa
+            div.nav-collapse.collapse
+              ul.nav
+                li.search
+                  form.navbar-search.form-search
+                    input.search-query(type="text",placeholder="keyword shortcut")
+                    script(type="text/x-handlebars-template",id="suggestion-template").
+                      <p class="suggestion-title">{{value}}{{#arguments}}{{/arguments}}</p>
+                      <p class="suggestion-parent">
+                        {{#if parent}}
+                          {{#with parent}}
+                            <a href="{{url}}">{{value}}</a>
+                          {{/with}}
+                        {{/if}}
+                      </p>
+                      <p class="suggestion-description">{{description}}</p>
+                li
+                  a(href='/cheatsheet/') Cheatsheet

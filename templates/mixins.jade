@@ -98,3 +98,14 @@ mixin edit_button( page )
     span.gh-ico
     span.gh-text
       = "Edit"
+
+mixin twitter_follow()
+  a(href="https://twitter.com/embersherpa",class="twitter-follow-button", data-show-count="false")="Follow @embersherpa"
+  script.
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+mixin github_follow()
+  iframe(src="http://ghbtns.com/github-btn.html?user=taras&type=follow", allowtransparency="true", frameborder="0", scrolling="0", width="132", height="20")
+
+mixin github_star()
+  iframe(src="http://ghbtns.com/github-btn.html?user=taras&repo=ember-sherpa&type=watch", allowtransparency="true", frameborder="0", scrolling="0", width="65", height="20")

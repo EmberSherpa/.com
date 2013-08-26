@@ -1,3 +1,5 @@
+@import "bootstrap";
+@import "flat-ui";
 @import "github";
 @import "typeahead";
 @import "topics";
@@ -35,8 +37,20 @@ body > header {
 .front-page {
 
   h2 {
-    margin: 2em 0;
+    margin: 2em 0 2.5em 0;
     text-align: center;
+    font-weight: normal;
+
+    color: #bdc3c7;
+
+    strong {
+      color: #34495e;
+    }
+
+  }
+
+  .dialog {
+    margin-bottom: 3em;
   }
 
   .features {
@@ -55,10 +69,12 @@ body > header {
       margin: 0 auto;
     }
   }
+
 }
 
 span.ember {
   color: #e74c3c;
+  font-weight: bold;
 }
 
 @media (max-width: 767px) {
