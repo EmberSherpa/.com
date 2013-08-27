@@ -18,7 +18,8 @@ html(lang='en')
         div.navbar-inner
           div.container
             button.btn.btn-navbar(type=button,data-toggle=collapse)
-            a.brand(href='/') Ember Sherpa
+            a.brand(href='/')
+              span= "Ember Sherpa"
             div.nav-collapse.collapse
               ul.nav
                 li.search
@@ -34,4 +35,7 @@ html(lang='en')
                         {{/if}}
                       </p>
                       <p class="suggestion-description">{{description}}</p>
-              a.btn.btn-success(href='/cheatsheet/') Cheatsheet
+              a.btn.btn-success(href='/cheatsheet/')
+                = "Cheatsheet"
+              a.btn.btn-info.mlm(href='/contribute/')
+                = "Contribute"

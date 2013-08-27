@@ -8,13 +8,24 @@
 body > header {
   background: #eceef0;
 
+  .container {
+    position: relative;
+  }
+
   .btn {
     margin-top: 17px !important;
   }
-}
 
-.navbar a.brand {
-  padding-left: 0
+  .brand {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+  }
+
+  .navbar .nav {
+    margin-left: 200px;
+  }
 }
 
 .row-fluid.breadcrumbs {

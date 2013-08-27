@@ -8,6 +8,7 @@ menu:
         Cheatsheet: "#cheatsheet"
         Metadata: "#metadata"
         Arguments: "#arguments"
+        Local: "#local"
     Links:
         Repository: http://github.com/taras/embersherpa
         Issues: http://github.com/taras/embersherpa/issues
@@ -79,7 +80,19 @@ arguments:
 ---
 ```
 
-#### The stack
+<h4 id="local">Local Installation</h4>
+
+1. <iframe src="/assets/github-btn.html?user=taras&repo=embersherpa&type=fork" allowtransparency="true" frameborder="0" scrolling="0" width="55px" height="20px"></iframe>
+2. Clone your repository
+3. ```npm install```
+4. ```bower install```
+5. ```wintersmith preview```
+6. Go to the site [http://localhost:8080](http://localhost:8080)
+
+**Few words of caution about local development: **
+<div class="alert alert-warning"><ul><li>In preview mode, url handling is funky: **you'll have to end your urls with trailing slash(/) otherwise you'll get a 404**</li><li>If you modify coffeescript or js, you'll probably have to restart your preview server</li><li>run in --verbose mode to see more information about what's going on ```wintersmith preview --verbose```</li></div>
+
+<h4 id="stack">The stack</h4>
 
 - [Flat UI](http://designmodo.github.io/Flat-UI/) on top of [Twitter Bootstrap 2.3.2](http://getbootstrap.com/2.3.2/)
 - [Typeahead.js](http://twitter.github.io/typeahead.js/) used for search
@@ -88,7 +101,7 @@ arguments:
 - Content is in [GitHub Style Markdown](https://help.github.com/articles/github-flavored-markdown)
 - [Several custom built](https://github.com/taras/embersherpa/tree/master/plugins) Wintersmith plugins written in CoffeeScript
 - [Grunt](http://gruntjs.com/) for automating tasks
-- [Ember.js](http://emberjs.com/) only used to made writing JS in the browser easier ( for now )
+- [Ember.js](http://emberjs.com/) only used to make writing JS in the browser easier ( for now )
 - [Qunit](http://qunitjs.com/) used for running tests
 - [Highlight.js](http://softwaremaniacs.org/soft/highlight/en/) library and [Highlight.js Node module](https://npmjs.org/package/highlight.js) for code highlighting
 
