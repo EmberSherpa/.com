@@ -1,4 +1,5 @@
 extends layout
+include mixins
 
 block content
   article.container-fluid
@@ -8,6 +9,4 @@ block content
       .span9
         != page.html
       aside.span3
-        ul.nav.nav-list.nav-list-vivid
-          li.nav-header
-            = "Links"
+        +menu_nav()

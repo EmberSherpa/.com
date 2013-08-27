@@ -1,6 +1,7 @@
 .page {
   .thumbnail {
     width: 200px;
+    clear: both;
     p {
       padding: 0 0.5em;
     }
@@ -11,5 +12,47 @@
   li {
     font-size: 16px;
     line-height: 22px;
+  }
+  .inline {
+    height: 16px;
+    vertical-align: middle;
+    padding-top: 0;
+
+    .gh-text {
+      margin-top: -2px;
+      vertical-align: text-top;
+    }
+  }
+
+  h4 {
+    margin-top: 1em;
+  }
+
+  iframe {
+    vertical-align: middle;
+  }
+
+  table {
+
+    @table-border: 1px solid #95a5a6;
+
+    border-top: @table-border;
+    border-right: @table-border;
+    margin-bottom: 1em;
+
+    tr {
+      border-bottom: @table-border;
+    }
+
+    td {
+      border-left: @table-border;
+      padding: 1em;
+    }
+
+    th {
+      border-left: @table-border;
+      padding: 0.25em;
+    }
+
   }
 }

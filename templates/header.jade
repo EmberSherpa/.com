@@ -10,8 +10,7 @@ html(lang='en')
       meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
       meta(name='viewport', content='width=device-width')
       title
-        block title
-          = locals.name
+          = page.title + ' | ' + locals.name
       link(rel='stylesheet', href='/assets/css/style.css')
   body(class=bodyclasses)
     header
@@ -35,4 +34,4 @@ html(lang='en')
                         {{/if}}
                       </p>
                       <p class="suggestion-description">{{description}}</p>
-              a.btn.btn-primary(href='/cheatsheet/') Cheatsheet
+              a.btn.btn-success(href='/cheatsheet/') Cheatsheet

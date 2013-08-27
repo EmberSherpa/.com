@@ -140,3 +140,16 @@ mixin github_follow()
 
 mixin github_star()
   iframe(src="http://ghbtns.com/github-btn.html?user=taras&repo=embersherpa&type=watch", allowtransparency="true", frameborder="0", scrolling="0", width="65", height="20")
+
+mixin menu_nav()
+  - if ( page && page.metadata.menu ) { var menu = page.metadata.menu } else { var menu = {} }
+  - var length = Object.keys( menu ).length
+  if length
+    ul.nav.nav-list.nav-list-vivid
+      each links, heading in menu
+        li.nav-header
+          = heading
+        each href, link in links
+          li
+            a(href=href)= link
+
