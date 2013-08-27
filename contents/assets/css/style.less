@@ -8,8 +8,8 @@
 body > header {
   background: #eceef0;
 
-  .container {
-    position: relative;
+  .in.collapse {
+    overflow: visible;
   }
 
   .btn {
@@ -17,14 +17,12 @@ body > header {
   }
 
   .brand {
-    position: absolute;
-    top: 0;
-    left: 0;
     z-index: 2;
   }
 
-  .navbar .nav {
-    margin-left: 200px;
+  .navbar .btn-navbar:before {
+    content: "\F150";
+    font-family: "FontAwesome";
   }
 }
 
