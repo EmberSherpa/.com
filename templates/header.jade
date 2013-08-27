@@ -1,6 +1,8 @@
 !!! 5
 block vars
   - var bodyclass = page.bodyclass || page.metadata.bodyclass;
+  - var template = page.metadata.template.replace( ".jade", "");
+  - var bodyclasses = [ bodyclass, template ]
 html(lang='en')
   head
     block head
@@ -11,7 +13,7 @@ html(lang='en')
         block title
           = locals.name
       link(rel='stylesheet', href='/assets/css/style.css')
-  body(class=bodyclass)
+  body(class=bodyclasses)
     header
       div.navbar.container
         div.navbar-inner

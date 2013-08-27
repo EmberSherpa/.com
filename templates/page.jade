@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  article.container-fluid
+    header.row-fluid
+      h1.h2= page.title
+    .row-fluid
+      .span9
+        != page.html
+      aside.span3
+        ul.nav.nav-list.nav-list-vivid
+          li.nav-header
+            = "Links"
