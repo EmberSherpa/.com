@@ -3,17 +3,16 @@ div.bottom-menu.bottom-menu-inverse
     div.row
       div.span2.brand
         a(href="/") Ember Sherpa
-      div.span6
+      div.span8
         ul.bottom-links
           li
-            a(href="/contribute/")= "Contribute "
-            span.label.label-info.label-small
-              = "new"
+            a.contribute(href="/contribute/")= "Contribute"
+          li
+            a(href="http://creativecommons.org/licenses/by-nc/3.0/")
+              = "License"
+
       div.span2
-        a.pull-right(href="http://creativecommons.org/licenses/by-nc/3.0/",alt="Attribution-NonCommercial 3.0 Unported")
-          img(src="/assets/images/cc-license.png")
-      div.span2
-        ul.bottom-icons.pull-right
+        ul.bottom-icons.bottom-links
           li
             a.h4.icon-twitter(href="https://twitter.com/embersherpa")
           li

@@ -90,9 +90,24 @@ body > header {
 
 }
 
-span.ember {
+.navbar .nav > li > a.contribute, .bottom-menu a.contribute, .contribute {
+  color: #e74c3c;
+}
+
+.ember {
   color: #e74c3c;
   font-weight: bold;
+}
+
+.breadcrumb > li:after {
+  content: "\f0da";
+  font-family: FontAwesome;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  *margin-right: .3em; // fixes ie7 issues
+  font-size: 17px;
 }
 
 @media (max-width: 767px) {
@@ -105,15 +120,8 @@ span.ember {
       float: left;
     }
   }
-};
 
-.breadcrumb > li:after {
-  content: "\f0da";
-  font-family: FontAwesome;
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: inherit;
-  -webkit-font-smoothing: antialiased;
-  *margin-right: .3em; // fixes ie7 issues
-  font-size: 17px;
-}
+  .bottom-menu {
+    text-align: center;
+  }
+};
