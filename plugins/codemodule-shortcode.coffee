@@ -3,7 +3,6 @@ module.exports = ( env, callback ) ->
   register_shortcode  = env.plugins.register_shortcode
   logger              = env.logger
   ContentPlugin       = env.ContentPlugin
-  highlight           = require("highlight").Highlight
   jade                = require( 'jade' )
 
   register_shortcode 'codemodule', ( attr, content ) ->
