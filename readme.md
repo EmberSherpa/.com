@@ -1,5 +1,7 @@
 # [Ember Sherpa](http://embersherpa.com)
 
+- [Contributor Guide](http://embersherpa.com/contribute/)
+
 ## Todo
 
 ### Content to add
