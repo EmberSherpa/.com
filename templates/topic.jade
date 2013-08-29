@@ -6,13 +6,13 @@ block content
   article.container#content
     if page.breadcrumbs
       +breadcrumb
-    .row
+    .row.mbl
       header.span12
         h2
           = page.title
           if page.arguments
             +topic_args( page.arguments, has_topics )
-    .row
+    .row.mbl
       .span12
         != page.html
     if has_topics
