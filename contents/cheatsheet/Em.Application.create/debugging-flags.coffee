@@ -7,7 +7,7 @@ module.exports.code = `function() {
 // activate logging of binding related activities
 Em.LOG_BINDINGS = true;
 
-var App = window.App = Em.Application.extend({
+var App = window.App = Em.Application.create({
     // activate logging of deprecated method or property usage
     LOG_STACKTRACE_ON_DEPRECATION : true,
     // activate basic logging of successful transitions
