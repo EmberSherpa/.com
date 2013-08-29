@@ -98,7 +98,7 @@ module.exports = (env, callback) ->
       if @metadata.highlight? then return @metadata.highlight else return false
 
     @property 'status', ->
-      if @metadata.status? then return @metadata.status else return "incomplete"
+      if @metadata.status? then return @metadata.status else return "work in progress"
 
     # return true if last argument is open ie. function( mixins, {
     @property 'open', ->
