@@ -1,37 +1,34 @@
+extends layout
 include mixins
-!!! 5
-- var parent = page.parent['index.md']
-html(lang='en')
-  head
-    block head
-      meta(charset='utf-8')
-      meta(http-equiv='X-UA-Compatible', content='IE=edge,chrome=1')
-      meta(name='viewport', content='width=device-width')
-      title
-        block title
-          = locals.name
-      link(rel='stylesheet', href='/assets/css/style.css')
-  body
-    include header
-    div.container-fluid
-      div.row-fluid.mbl
-        a.btn.btn-primary.btn-huge(href=parent.url) Back to
-          +space
+
+block styles
+  link(rel='stylesheet', href='/assets/css/qunit.css')
+
+block content
+  - var parent = page.parent['index.md']
+  .container
+    .row.mbl
+      .span12
+        a.btn.btn-primary.btn-huge(href=parent.url)
+          i.icon-arrow-left
+          = " Back to "
           = parent.title
-      div.row-fluid
-        row.span6
-          div.row-fluid.mbl
-            h4 Code
-            +highlight(page.code)
-          div.row-fluid.mbl
-            h4 Tests
-            +highlight(page.tests)
-          div.row-fluid.mbl
-            h4 Test Results
-            script(type="text/javascript")= page.code
-            script(type="text/javascript")= page.tests
-            div.mtl#qunit
-        row.span6
-          +disqus()
-    include footer
-    script(src="/assets/js/qunit.js")
+    .row
+      .span6
+        .mbl
+          h4#code Code
+          +highlight(page.code)
+        .mbl
+          h4#tests Tests
+          +highlight(page.tests)
+        .mbl
+          h4#results Test Results
+          div.mtl#qunit
+      .span6
+        h4#discussion Discussion
+        +disqus()
+
+block scripts
+  script(src="/assets/js/codemodule.js")
+  script(type="text/javascript")= page.code
+  script(type="text/javascript")= page.tests

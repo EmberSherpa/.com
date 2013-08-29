@@ -1,5 +1,9 @@
-(function($) {
+require( '../../../components/jquery/jquery' );
+require( '../../../components/bootstrap/js/bootstrap-collapse' );
+require( '../../../components/bootstrap/js/bootstrap-transition' );
+require( '../../../components/typeahead.js/dist/typeahead' );
 
+(function($) {
   /**
    * Output ( args1, args2 ) if item has arguments
    */
@@ -24,29 +28,29 @@
     return buffer;
   });
 
-var searchInput = 'input.search-query';
-$(document).ready( function(){
-  $( searchInput ).typeahead({
-    name: 'topics',
-    prefetch: {
-      url: '/cheatsheet.typeahead.json'
-    },
-    template: Handlebars.compile($("#suggestion-template").html())
-  }).on('typeahead:selected', function( e, selected ) {
-      if ( selected && selected.url ) {
-        window.location.pathname = selected.url;
-      }
-    }).keyup( function( e ){
-      if ( e.keyCode === 27 ) {
-        $( searchInput ).typeahead('setQuery', '' ).blur();
-        e.stopPropagation();
+  var searchInput = 'input.search-query';
+  $(document).ready( function(){
+    $( searchInput ).typeahead({
+      name: 'topics',
+      prefetch: {
+        url: '/cheatsheet.typeahead.json'
+      },
+      template: Handlebars.compile($("#suggestion-template").html())
+    }).on('typeahead:selected', function( e, selected ) {
+        if ( selected && selected.url ) {
+          window.location.pathname = selected.url;
+        }
+      }).keyup( function( e ){
+        if ( e.keyCode === 27 ) {
+          $( searchInput ).typeahead('setQuery', '' ).blur();
+          e.stopPropagation();
+        }
+      });
+  }).keyup( function( e ){
+      if( e.keyCode === 27 ) {
+        $( searchInput ).focus()
       }
     });
-  }).keyup( function( e ){
-    if( e.keyCode === 27 ) {
-      $( searchInput ).focus()
-    }
-  });
   $( '.go-to-search' ).click(function(){
     $( searchInput ).focus();
   });

@@ -1,48 +1,47 @@
+extends layout
 include mixins
 
-include header
-.container
-  h2
-    span.ember="Ember.js "
-    strong= "cheatsheet"
-    = " and "
-    strong= "development companion"
-.container
-  .dialog.dialog-success
-    +github_star()
-    +github_follow()
-    +twitter_follow()
-.container.features
-  .row
-    .span6
-      h4= "Searchable"
-      img.thumbnail(src="/assets/images/searchable.jpg")
-      p= "Hit "
-        strong= "ESC "
-        = "+ keyword to look up a method or a property."
-    .span6
-      h4= "Concise"
-      img.thumbnail(src="/assets/images/concise.jpg")
-      p= "All of the facts, none of the filler."
-  .row
-    .span6
-      h4= "Open Source"
-      p
-        i="Is something missing?"
-        = "- create an issue or submit a pull request on "
-        a(href="https://github.com/taras/ember-sherpa")= "GitHub"
-    .span6
-      h4
-        = "Code Examples "
-        span.label.label-large.label-success= "coming soon"
-      p= "Validated with tests "
-  .row
-    .btn-group
-      button.go-to-search.btn.btn-huge.btn-primary.mrl
-        = "Go to search "
-        i.icon-arrow-up
-      a.btn.btn-huge.btn-success(href="/cheatsheet/")
-        = "Go to cheatsheet "
-        i.icon-arrow-right
-
-include footer
+block content
+  .container
+    h2
+      span.ember="Ember.js "
+      strong= "cheatsheet"
+      = " and "
+      strong= "development companion"
+  .container
+    .dialog.dialog-success
+      +github_star()
+      +github_follow()
+      +twitter_follow()
+  .container.features
+    .row
+      .span6
+        h4= "Searchable"
+        img.thumbnail(src="/assets/images/searchable.jpg")
+        p= "Hit "
+          strong= "ESC "
+          = "+ keyword to look up a method or a property."
+      .span6
+        h4= "Concise"
+        img.thumbnail(src="/assets/images/concise.jpg")
+        p= "All of the facts, none of the filler."
+    .row
+      .span6
+        h4= "Open Source"
+        p
+          i="Is something missing?"
+          = "- create an issue or submit a pull request on "
+          a(href="https://github.com/taras/ember-sherpa")= "GitHub"
+      .span6
+        h4
+          = "Code Examples "
+          span.label.label-large.label-success= "coming soon"
+        p= "Validated with tests "
+    .row
+      .btn-group
+        button.go-to-search.btn.btn-huge.btn-primary.mrl
+          = "Go to search "
+          i.icon-arrow-up
+        a.btn.btn-huge.btn-success(href="/cheatsheet/")
+          = "Go to cheatsheet "
+          i.icon-arrow-right

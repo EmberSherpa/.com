@@ -4,6 +4,7 @@
 @import "typeahead";
 @import "topics";
 @import "page";
+@import "highlight";
 
 body > header {
   background: #eceef0;
@@ -26,26 +27,23 @@ body > header {
   }
 }
 
-.row-fluid.breadcrumbs {
-  background-color: #f3f4f5;
+.row.breadcrumbs {
   font-size: 14.994px;
   font-weight: 700;
-  padding: 13px 20px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
   min-height: 25px;
 
-  div, ul {
-    min-height: 20px;
-  }
-
-  ul.breadcrumb {
+  .breadcrumb {
     margin-bottom: 0;
-    padding: 0;
     margin-top: 2px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    background-color: #f3f4f5;
   }
 
+  .page-options {
+    padding: 13px 20px;
+  }
 }
 
 .front-page {

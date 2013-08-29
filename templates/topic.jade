@@ -3,20 +3,20 @@ include mixins
 
 block content
   - var has_topics = page.topics.length
-  article.container-fluid
+  article.container#content
     if page.breadcrumbs
       +breadcrumb
-    .row-fluid
-      header
+    .row
+      header.span12
         h2
           = page.title
           if page.arguments
             +topic_args( page.arguments, has_topics )
-    .row-fluid
+    .row
       .span12
         != page.html
     if has_topics
-      .row-fluid
+      .row
         .span12
           h3.mbl(id="properties")= "Properties"
           +topics( page.topics )

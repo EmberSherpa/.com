@@ -6,6 +6,7 @@
     "description": "Ember.js Cheatsheet and Development Companion"
   },
   "plugins": [
+    "./node_modules/wintersmith-browserify",
     "./node_modules/wintersmith-less",
     "./plugins/onepager",
     "./plugins/codemodule",
@@ -31,5 +32,14 @@
   },
   "repository": {
     "base": "https://github.com/taras/embersherpa"
+  },
+  "browserify": {
+    "ignore": [
+      "ember.js"
+    ]
+  },
+  "codemodule": {
+    "pattern": "cheatsheet/**/*.coffee",
+    "template": "test.jade"
   }
 }

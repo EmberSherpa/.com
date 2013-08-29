@@ -105,18 +105,20 @@ mixin topics(topics, depth)
 
 
 mixin breadcrumb
-  div.row-fluid.breadcrumbs
-    ul.breadcrumb.span8
-      for breadcrumb in breadcrumbs
-        if breadcrumb.last
-          li.active
-            = env.helpers.breadcrumbText(breadcrumb)
-        else
-          li
-            a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
-    div.span4.page-options
-      +edit_button()
-      +page_status()
+  div.row.breadcrumbs
+    .span8
+      ul.breadcrumb
+        for breadcrumb in breadcrumbs
+          if breadcrumb.last
+            li.active
+              = env.helpers.breadcrumbText(breadcrumb)
+          else
+            li
+              a(href=breadcrumb.url)= env.helpers.breadcrumbText(breadcrumb)
+    .span4
+      .page-options
+        +edit_button()
+        +page_status()
 
 mixin page_status()
   - switch( page.status ) { case 'incomplete': var label = 'label-important'; break; case 'complete': var label = 'label-success'; break; default: var label = 'label-warning'; };

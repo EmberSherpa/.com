@@ -47,7 +47,7 @@ module.exports = (env, callback) ->
     if error then return callback error
     metadata =
       description:  module.description or ''
-      template:     module.template or 'codemodule.jade'
+      template:     module.template or options.template or 'codemodule.jade'
       code:         getFunctionBody module.code.toString()
       tests:        getFunctionBody module.tests.toString()
       filename:     module.filename or path.basename( filepath.full, '.coffee' ) + ".html"
