@@ -4,6 +4,7 @@ module.exports = ( env, callback ) ->
   logger              = env.logger
   ContentPlugin       = env.ContentPlugin
   jade                = require( 'jade' )
+  hljs                = require( 'highlight.js' )
 
   register_shortcode 'codemodule', ( attr, content ) ->
     unless @ instanceof ContentPlugin then logger.log( logger.WARN, "You have to bind apply_shortcodes to the page, try apply_shortcodes.call(@, content)" )
@@ -23,6 +24,12 @@ div.codemodule.embed
     # check that src Code Module exists
     if not @parent[ name ]? then return name + " does not exist."
 
-    return jade.render template, @parent[ name ]
+    cm = @parent[ name ]
+
+    ctx =
+      code: hljs.highlight( 'javascript', cm.code ).value
+      url: cm.url
+    
+    return jade.render template, ctx
 
   callback()
