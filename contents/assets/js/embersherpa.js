@@ -1,7 +1,5 @@
-require( '../../../components/jquery/jquery' );
 require( '../../../components/bootstrap/js/bootstrap-collapse' );
 require( '../../../components/bootstrap/js/bootstrap-transition' );
-require( '../../../components/typeahead.js/dist/typeahead' );
 
 (function($) {
   /**
