@@ -2,5 +2,10 @@
 title: "willTransition"
 template: topic.jade
 tags: [ route, transition ]
-description: triggered whenever transition triggered on current route
+description: called whenever transition triggered on current route
+value: function
+arguments:
+    transition:
+        required: false
+        description: promise that can be rejected to prevent transition
 ---
