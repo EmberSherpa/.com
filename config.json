@@ -1,6 +1,6 @@
 {
   "locals": {
-    "url": "http://localhost:8080",
+    "url": "http://embersherpa.com",
     "name": "Ember Sherpa",
     "owner": "Taras Mankovski",
     "description": "Ember.js Cheatsheet and Development Companion"
@@ -13,6 +13,7 @@
     "./plugins/codemodule-shortcode",
     "./plugins/typeahead"
   ],
+  "port": "2777",
   "require": {
     "moment": "moment",
     "_": "underscore",

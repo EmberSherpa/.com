@@ -32,7 +32,7 @@ module.exports = ( env, callback ) ->
         code.replacer.call( @, attributes, content )
 
       content = content.replace findCode, replacer
-      content.toString()
+    content.toString()
 
   env.plugins.register_shortcode  = register_shortcode
   env.plugins.apply_shortcodes    = apply_shortcodes

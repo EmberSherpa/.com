@@ -87,7 +87,7 @@ arguments:
 3. ```npm install```
 4. ```bower install```
 5. ```wintersmith preview```
-6. Go to the site [http://localhost:8080](http://localhost:8080)
+6. Go to the site [http://localhost:2777](http://localhost:2777)
 
 **Few words of caution about local development: **
 <div class="alert alert-warning"><ul><li>In preview mode, url handling is funky: **you'll have to end your urls with trailing slash(/) otherwise you'll get a 404**</li><li>If you modify coffeescript or js, you'll probably have to restart your preview server</li><li>run in --verbose mode to see more information about what's going on ```wintersmith preview --verbose```</li></div>
