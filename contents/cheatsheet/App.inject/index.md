@@ -10,9 +10,9 @@ arguments:
     property:
         required: true
         description: name of property to set
-    value:
+    injection:
         required: true
-        description: value to set, can be a lookup string ( ie. controller:application )
+        description: value to inject, can be a lookup string ( ie. controller:application )
 api_url: http://emberjs.com/api/classes/Ember.Application.html#method_inject
 ---
 
