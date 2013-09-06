@@ -8,10 +8,8 @@ arguments:
     path:
         required: true
         description: lookup string to register
-
-    options
+    options:
         required: true
-
         open: true
 value: function
 ---
