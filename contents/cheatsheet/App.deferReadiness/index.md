@@ -2,6 +2,6 @@
 title: App.deferReadiness
 template: topic.jade
 tags: [ 'initialization', 'delay', 'application' ]
-description: delays initialization until advancedReadiness is called
+description: delays initialization until advanceReadiness is called
 arguments: [ ]
 ---
