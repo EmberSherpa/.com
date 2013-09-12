@@ -28,7 +28,7 @@ menu:
     EPF: "http://epf.io/"
 ---
 
-When I started learning Ember.js, I spent a lot of time trying different persistence layers. In the process, tried *Ember Data*<span class="small">, at the time it was at Revision 13,</span> *Ember Model* and *EPF*. Without a solid understanding of the Ember architecture, it was difficult to tell where Ember stopped and the persistance layer began. When something wasn't working, I couldn't be sure if my code had a bug, if I was using the library incorrectly or there was a bug in the library that I was using. I decided that the best way for me to learn was to create a simple CRUD app that didn't use one of the existing persistance layers. 
+When I started learning Ember.js, I spent a lot of time trying different persistence layers. In the process, I tried *Ember Data*<span class="small"> (at the time it was at Revision 13),</span> *Ember Model* and *EPF*. Without a solid understanding of the Ember architecture it was difficult to tell where Ember stopped and the persistance layer began. When something wasn't working, I couldn't be sure if my code had a bug, if I was using the library incorrectly or if there was a bug in the library that I was using. I decided that the best way for me to learn was to create a simple CRUD app that didn't use any of the existing persistance layers. 
 
 This article will walk you through the *Ember CRUD Example* app to help you understand how Ember works and how to organize your project.
 
@@ -60,7 +60,7 @@ I started off writing the entire project in 2 files(app.js and index.html), but 
 <span id="grunt"></span>
 #### Grunt
 
-Grunt is a task runner that is used to automate repetitive action that occur during development. Tasks are configurd via the **/Gruntfile.js** file (look in root of your working directory). Ember App Kit comes preconfigured with a comprehensive set of tasks. Here is a list of the once that you'll use most frequently.
+Grunt is a task runner that is used to automate repetitive actions that occur during development. Tasks are configurd via the **/Gruntfile.js** file (look in the root of your working directory). Ember App Kit comes preconfigured with a comprehensive set of tasks. Here is a list of the ones that you'll use most frequently.
 
 * ```grunt``` - build your app and run the tests.
 * ```grunt server``` - run the server in development mode and auto-rebuilding when files change
