@@ -6,12 +6,10 @@ description: "Learn to understand Ember architecture by building a CRUD app with
 author: tarasm
 date: 2013-09-11 15:00
 menu:
-  Demo:
-    Run App: "app/index.html"
-    Run Tests: "app/tests/index.html"
-  Table of contents:
+  Table of Contents: 
+    Introduction: "#introduction"
     Getting Started: "#start"
-    Project Layout: "#layout"
+    Ember App Kit: "#ember-app-kit"
     Grunt: "#grunt"
     JSHint: "#jshint"
     QUnit & Karma: "#qunit"
@@ -27,8 +25,13 @@ menu:
     Ember Model: "https://github.com/ebryn/ember-model"
     EPF: "http://epf.io/"
 ---
+<span id="introduction"></span>
 
 When I started learning Ember.js, I spent a lot of time trying different persistence layers. In the process, I tried *Ember Data*<span class="small"> (at the time it was at Revision 13),</span> *Ember Model* and *EPF*. Without a solid understanding of the Ember architecture it was difficult to tell where Ember stopped and the persistance layer began. When something wasn't working, I couldn't be sure if my code had a bug, if I was using the library incorrectly or if there was a bug in the library that I was using. I decided that the best way for me to learn was to create a simple CRUD app that didn't use any of the existing persistance layers. 
+
+I created an Ember app that does basic CRUD functionality and stores the created entries in HTML5 localStorage. This app is **work in progress** and I intend to improve it over time. You can checkout the <a href="https://github.com/taras/ember-crud-example#todo" target="_blank">README</a> to see what's completed.
+
+<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">README</a></div>
 
 This article will walk you through the *Ember CRUD Example* app to help you understand how Ember works and how to organize your project.
 
@@ -52,8 +55,8 @@ To start,
 
 Going forward, I'll refer to files in your working directory. 
 
-<span id="layout"></span>
-### Project Layout
+<span id="ember-app-kit"></span>
+### Ember App Kit
 
 I started off writing the entire project in 2 files(app.js and index.html), but I wanted my code to look as close to a real project as possible, so I refactored my code to use *Ember App Kit*. *Ember App Kit* includes [Grunt](#grunt), [JSHint](#jshint), [QUnit with Karma](#qunit) test runner and [ECMAScript 6 modules](#ecmascript6).
 
@@ -103,3 +106,4 @@ In turn, *application* module exports *ApplicationRoute* to make it available to
 </div>
 
 **ember-crud-example** is the namespace and it's configured via the *namespace* property in **/package.json**.
+
