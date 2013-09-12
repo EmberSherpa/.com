@@ -14,12 +14,14 @@ menu:
     JSHint: "#jshint"
     QUnit & Karma: "#qunit"
     ACMAScript 6 Modules: "#acmascript6"
+    Routes: "#routes"
   Links:
     Ember App Kit: "https://github.com/stefanpenner/ember-app-kit"
     Grunt: "http://gruntjs.com/"
     JSHint: "http://www.jshint.com/"
     Karma: "http://karma-runner.github.io/0.10/index.html"
     ECMAScript 6 modules: "http://wiki.ecmascript.org/doku.php?id=harmony:modules"
+    Ember Inspector: "https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi"
     Bower: "http://bower.io/"
     Ember Data: "https://github.com/emberjs/data"
     Ember Model: "https://github.com/ebryn/ember-model"
@@ -31,7 +33,7 @@ When I started learning Ember.js, I spent a lot of time trying different persist
 
 I created an Ember app that does basic CRUD functionality and stores the created entries in HTML5 localStorage. This app is **work in progress** and I intend to improve it over time. You can checkout the <a href="https://github.com/taras/ember-crud-example#todo" target="_blank">README</a> to see what's completed.
 
-<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">README</a></div>
+<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">TODOs</a></div>
 
 This article will walk you through the *Ember CRUD Example* app to help you understand how Ember works and how to organize your project.
 
@@ -107,3 +109,40 @@ In turn, *application* module exports *ApplicationRoute* to make it available to
 
 **ember-crud-example** is the namespace and it's configured via the *namespace* property in **/package.json**.
 
+<span id="routes"></span>
+### Routes
+
+<div class="dialog dialog-warning">If you're not sure where to start planning your application, start with routes.</div>
+
+Routes are the entry point to your application. The example app allows the user to upload photos and add title and description to each photo. So we start with urls where the user will be able to perform these actions.
+
+* **/photos/** - show a list of photos
+* **/photos/new** - add a new photo
+* **/photo/:id** - see an existing photo
+* **/photo/:id/edit** - edit an existing photo
+
+Ember App Kit has a separate file where the routes are defined, look in **/app/routes.js**.
+
+Ember has two different kinds of routes: resources and nested routes. Resources can nest other resources and routes, and are added with ```this.resource( name, options, fn )```. In the example app, **photos** and **photo** are resources. Nested routes are nested into resources and are added with ```this.route( name, options )```. Nested resources **can not** have other resources or endpoints under them. 
+
+Ember's class naming conventions can be tricky especially around the route class names. If you're not sure what class name Ember expects, open Route tab in the Ember Inspector. 
+
+![Ember Inspector open on Route tab](routes.jpg)
+
+#### ApplicationRoute
+
+**ApplicationRoute** is the brain of the example app. It listens for important events that happen in the application and handles them appropriately.
+
+<div class="dialog dialog-warning">When starting, handle actions that are triggered by your templates in the application route. Later, when you need more granular control, you can refactor your app to handle them closer to the template ( ie. a nested route, a controller or a view )</div>
+
+In the example app, all actions are hanled in **/app/routes/application.js**. **ApplicationRoute** is also responsible for handling transitions from one route to another.
+
+#### PhotosRoute
+
+**PhotosRoute**(in **/app/routes/photos.js**) shows a list of uploaded photos and nests **NewPhotosRoute**(in **/app/routes/photos/new.js**).
+
+<div class="dialog dialog-warning">Ember expects nested routes to be rendered inside of its resource's template. This means that when accessing a nested route, by default, both the resource template and the nested route template are rendered.</div>
+
+<div class="dialog dialog-danger">Nested templates are rendered into an ```{{outlet}}``` in the resource's template. If the resource's template doesn't have an ```{{outlet}}``` then the nested route's template will **not be** rendered.</div>
+
+In the example app, we want to show the new photo form when on the **NewPhotosRoute** or list of photos when on the **PhotosRoute**. This means that the **PhotosRoute** exists in 2 states: the list or the form. The template for **PhotosRoute**, located in **/app/templates/photos.hbs** has ```{{if isOpenNew}}``` is true then show ```{{outlet}}```, otherwise show the list. 
