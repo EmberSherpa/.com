@@ -1,5 +1,5 @@
 ---
-title: Ember CRUD example app without Ember Data
+title: CRUD example app without Ember Data
 template: article.jade
 tags: [ ember.js ]
 description: "Learn to understand Ember architecture by building a CRUD app without Ember Data."
