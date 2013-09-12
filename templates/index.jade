@@ -1,0 +1,17 @@
+extends layout
+include mixins
+
+block vars
+  - var bodyclasses = "articles index"
+  - var page = { title: "Articles" }
+
+block content
+  .container#content
+    header.row
+      h1.span12 Articles 
+    each article in articles
+      article.row
+        header.span12
+          h2
+            a(href=article.url)= article.title
+          p.h5.description= article.metadata.description

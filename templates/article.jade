@@ -1,0 +1,15 @@
+extends layout
+include mixins
+
+block content
+  article.container#content
+    .row.mbl
+      header.span12
+        h2= page.title
+    .row-fluid
+      .span9
+        != page.html
+        h3(id="comments") Comments
+        +disqus()
+      aside.span3
+        +menu_nav()

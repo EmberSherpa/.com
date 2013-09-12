@@ -108,6 +108,43 @@ body > header {
   font-size: 17px;
 }
 
+#content {
+  margin-bottom: 1em;
+  ol, ul {
+    li {
+      font-size: 18.004px;
+      line-height: 1.722169;
+    }
+    margin-bottom: 0.25em;
+  }
+  h3 {
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+  }
+  h4 {
+    margin-top: 0.75em;
+  }
+
+  .dialog {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}
+
+.articles {
+  h1, h2, .description {
+    text-align: center;
+  }
+
+  &.index {
+
+  }
+
+  #content > header, article {
+    margin-bottom: 4em;
+  }
+}
+
 @media (max-width: 767px) {
   .row-fluid.breadcrumbs {
     width: auto;

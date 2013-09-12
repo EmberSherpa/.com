@@ -1,6 +1,7 @@
 {
   "locals": {
     "url": "http://embersherpa.com",
+    "dev": "http://localhost:2777",
     "name": "Ember Sherpa",
     "owner": "Taras Mankovski",
     "description": "Ember.js Cheatsheet and Development Companion"
@@ -12,7 +13,9 @@
     "./plugins/codemodule",
     "./plugins/shortcodes",
     "./plugins/codemodule-shortcode",
-    "./plugins/typeahead"
+    "./plugins/typeahead",
+    "./plugins/paginator",
+    "./plugins/env-patch"
   ],
   "port": "2777",
   "require": {
@@ -33,13 +36,13 @@
   "repository": {
     "base": "https://github.com/taras/embersherpa"
   },
-  "browserify": {
-    "ignore": [
-      "ember.js"
-    ]
-  },
   "codemodule": {
     "pattern": "cheatsheet/**/*.coffee",
     "template": "test.jade"
+  },
+  "paginator": {
+    "first": "articles/index.html",
+    "perPage": 3,
+    "template": "index.jade"
   }
 }
