@@ -128,7 +128,6 @@ define("ember-crud-example/controllers/photos",
   function() {
     "use strict";
     var PhotosController = Ember.ArrayController.extend({
-      isNewOpen: null,
       contentBinding: 'storage.cache.photo'
     });
 
@@ -237,11 +236,10 @@ define("ember-crud-example/routes",
   function() {
     "use strict";
     function Routes() {
-      this.resource('photos', { path: '/photos' } , function(){
-        this.route( 'new' );
-      });
-      this.resource('photo', { path: '/photo/:guid' }, function(){
-        this.route( 'edit' );
+      this.resource('photos',     {path:'/photos' });
+      this.resource('photo.new',  {path:'/photo/new'});  
+      this.resource('photo',      {path:'/photo/:guid'}, function(){
+        this.route('edit');
       });
     }
 
@@ -256,43 +254,30 @@ define("ember-crud-example/routes/application",
     var ApplicationRoute = Ember.Route.extend({
       actions: {
         goToNewPhoto: function () {
-          return this.transitionTo( 'photos.new' );
+          this.transitionTo( 'photo.new' );
         },
         goToPhoto: function( model ) {
-          return this.transitionTo( 'photo', model );
+          this.transitionTo( 'photo', model );
         },
         edit: function( model ) {
-          return this.transitionTo( 'photo.edit', model.copy() );
+          this.transitionTo( 'photo.edit', model.copy() );
         },
         create: function( model ) {
           this.storage.create( model );
-          return this.goToPhotos();
+          this.transitionTo( 'photos' );      
         },
         update: function( model ) {
           this.storage.update( model );
-          return this.goToPhotos();
+          this.transitionTo( 'photos' );
         },
         remove: function( model ) {
           this.storage.remove( model );
         },
         cancel: function( model ) {
-          Ember.destroy( model );
+          Ember.run( model, "destroy" );
           this.storage.refresh(Photo);
-          return this.goToPhotos();
-        },
-        /**
-         * TODO: look into components events only pass 1 arument
-         */
-        didLoadFile: function( args ) {
-          var
-            src = args[ 0 ],
-            model = args[ 1 ];
-          model.set( 'image', src );
+          this.transitionTo( 'photos' );      
         }
-      },
-      goToPhotos: function() {
-        this.controllerFor( 'photos' ).set( 'isNewOpen', false );
-        return this.transitionTo( 'photos' );
       }
     });
 
@@ -327,6 +312,23 @@ define("ember-crud-example/routes/photo",
 
     return PhotoRoute;
   });
+define("ember-crud-example/routes/photo/new",
+  ["ember-crud-example/models/photo"],
+  function(Photo) {
+    "use strict";
+
+    var PhotoNewRoute = Ember.Route.extend({
+      model: function() {
+        // provide a new photo to the template
+        return Photo.create({});
+      },
+      setupController: function( controller, model ) {
+        controller.set( 'content', model );
+      }
+    });
+
+    return PhotoNewRoute;
+  });
 define("ember-crud-example/routes/photos",
   ["ember-crud-example/models/photo"],
   function(Photo) {
@@ -339,33 +341,6 @@ define("ember-crud-example/routes/photos",
     });
 
     return PhotosRoute;
-  });
-define("ember-crud-example/routes/photos/new",
-  ["ember-crud-example/models/photo"],
-  function(Photo) {
-    "use strict";
-
-    var PhotosNewRoute = Ember.Route.extend({
-      beforeModel: function() {
-        this.controllerFor( 'photos' ).set( 'isNewOpen', true );
-      },
-      model: function() {
-        return Photo.create({});
-      },
-      setupController: function( controller, model ) {
-        controller.set( 'content', model );
-      },
-      actions: {
-        willTransition: function( transition ) {
-          if ( transition.targetName === 'photos.new' ) {
-            // when transitioning to photos.new tell controller for this route that posts.new is open
-            this.controllerFor( 'photos' ).set( 'isNewOpen', true );
-          }
-        }
-      }
-    });
-
-    return PhotosNewRoute;
   });
 define("ember-crud-example/utils/guid",
   [],

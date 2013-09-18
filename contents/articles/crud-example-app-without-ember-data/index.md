@@ -5,40 +5,30 @@ tags: [ ember.js ]
 description: "Learn to understand Ember architecture by building a CRUD app without Ember Data."
 author: tarasm
 date: 2013-09-11 15:00
-menu:
-  Table of Contents: 
-    Introduction: "#introduction"
-    Getting Started: "#start"
-    Ember App Kit: "#ember-app-kit"
-    Grunt: "#grunt"
-    JSHint: "#jshint"
-    QUnit & Karma: "#qunit"
-    ACMAScript 6 Modules: "#acmascript6"
-    Routes: "#routes"
-  Links:
-    Ember App Kit: "https://github.com/stefanpenner/ember-app-kit"
-    Grunt: "http://gruntjs.com/"
-    JSHint: "http://www.jshint.com/"
-    Karma: "http://karma-runner.github.io/0.10/index.html"
-    ECMAScript 6 modules: "http://wiki.ecmascript.org/doku.php?id=harmony:modules"
-    Ember Inspector: "https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi"
-    Bower: "http://bower.io/"
-    Ember Data: "https://github.com/emberjs/data"
-    Ember Model: "https://github.com/ebryn/ember-model"
-    EPF: "http://epf.io/"
+Table of Contents: 
+  Introduction: "#introduction"
+  Get the code: "#get-the-code"
+  Routes: "#routes"
+  Models: "#models"
+  Controllers: "#controllers"
+  Persistence Layer: "#persistence-layer"
+  Injections: "#injections"
+Links:
+  Ember Inspector: "https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi"
+  Ember Data: "https://github.com/emberjs/data"
+  Ember Model: "https://github.com/ebryn/ember-model"
+  EPF: "http://epf.io/"
 ---
-<span id="introduction"></span>
+<span id="introduction"></span>When I started learning Ember.js, I spent a lot of time trying different persistence libraries. In the process, I tried *Ember Data*<span class="small"> (at the time it was at Revision 13),</span> *Ember Model* and *EPF*. Without a solid understanding of the Ember architecture it was difficult to tell where Ember stopped and the persistence library began. When something wasn't working, I couldn't be sure if my code had a bug, if I was using the library incorrectly or if there was a bug in the library that I was using. I decided that the best way for me to learn was to create a simple CRUD app and roll my own persistence layer. 
 
-When I started learning Ember.js, I spent a lot of time trying different persistence layers. In the process, I tried *Ember Data*<span class="small"> (at the time it was at Revision 13),</span> *Ember Model* and *EPF*. Without a solid understanding of the Ember architecture it was difficult to tell where Ember stopped and the persistance layer began. When something wasn't working, I couldn't be sure if my code had a bug, if I was using the library incorrectly or if there was a bug in the library that I was using. I decided that the best way for me to learn was to create a simple CRUD app that didn't use any of the existing persistance layers. 
-
-I created an Ember app that does basic CRUD functionality and stores the created entries in HTML5 localStorage. This app is **work in progress** and I intend to improve it over time. You can checkout the <a href="https://github.com/taras/ember-crud-example#todo" target="_blank">README</a> to see what's completed.
+The Ember CRUD Example app does basic CRUD functionality and stores the created entries in HTML5 localStorage. This app is **work in progress** and I intend to improve it over time. You can checkout the <a href="https://github.com/taras/ember-crud-example#todo" target="_blank">TODOs</a> to see what's completed.
 
 <div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">TODOs</a></div>
 
-This article will walk you through the *Ember CRUD Example* app to help you understand how Ember works and how to organize your project.
-
 <span id="start"></span>
-### Getting Started
+### Get the code
+
+<div class="dialog dialog-info">The example app is based on *Ember App Kit*. Read <a href="/articles/introduction-to-ember-app-kit">introduction to Ember App Kit</a> if you're not familiar with the tools that it provides.</div>
 
 To start, 
 
@@ -53,69 +43,14 @@ To start,
   2. go to <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
   3. your app should look like the <a href="app/index.html">demo</a>
 
-<div class="dialog dialog-warning">If you're having difficulty with the setup, checkout the <a href="support.html">support page</a> or talk to me via <a href="https://clarity.fm/tarasm">Clarity.fm</a></div>
-
-Going forward, I'll refer to files in your working directory. 
-
-<span id="ember-app-kit"></span>
-### Ember App Kit
-
-I started off writing the entire project in 2 files(app.js and index.html), but I wanted my code to look as close to a real project as possible, so I refactored my code to use *Ember App Kit*. *Ember App Kit* includes [Grunt](#grunt), [JSHint](#jshint), [QUnit with Karma](#qunit) test runner and [ECMAScript 6 modules](#ecmascript6).
-
-<span id="grunt"></span>
-#### Grunt
-
-Grunt is a task runner that is used to automate repetitive actions that occur during development. Tasks are configurd via the **/Gruntfile.js** file (look in the root of your working directory). Ember App Kit comes preconfigured with a comprehensive set of tasks. Here is a list of the ones that you'll use most frequently.
-
-* ```grunt``` - build your app and run the tests.
-* ```grunt server``` - run the server in development mode and auto-rebuilding when files change
-* ```grunt test:server``` - run the server in test mode and re-run the tests when files change
-
-For a complete list of tasks checkout the **/Gruntfile.js**.
-
-<span id="jshint"></span>
-#### JSHint
-
-JSHint reports common errors in your code. In *Ember App Kit*, JSHint is used as a Grunt task that runs when you run ```grunt```, ```grunt server``` or any of the ```grunt test``` tasks. You can also run it manually with ```grunt jshint```. 
-
-When any of these commands run, you'll see a line that starts with **Running "jshint:all" (jshint) task**
-
-![JSHint Example](js-hint.jpg)
-
-<span id="qunit"></span>
-#### QUnit & Karma
-
-QUnit is the testing framework that is recommended by the Ember.js Core Team. Karma is a test runner that allows us to run tests in the browser or headless via PhantomJS.
-
-Here are some of the ways that you can execute the tests:
-
-* ```grunt test``` runs the tests one time.
-* ```grunt test:server``` opens Karma test runner and re-runs the tests everytime a file changes
-* in the browser, go to [http://localhost:8000/tests/](http://localhost:8000/tests) directory
-
-<span id="acmascript6"></span>
-#### ACMAScript 6 Modules
-
-Ember provides namespacing which allows you to keep your app's classes out of the global scope. Modules take this a step further by requiring you to explicitely import objects into your scope. *ACMAScript 6 modules* is a features that's coming in the next version of JavaScript, but you can use them today with the help of *es6-module-transpiler*.  You don't have to know how it works, but you need to know how to use it.
-
-Every module can import objects from other modules and export modules to make them available to other modules. A good example of this is in **/app/routes/application.js**.
-
-At the top of the file, we import Photo model from 'ember-crud-example/models/photo' with ```import Photo from 'ember-crud-example/models/photo';```. This makes the *Photo* model from *ember-crud-example/models/photo* module available within the *application* module. 
-
-In turn, *application* module exports *ApplicationRoute* to make it available to other modules with ```export default ApplicationRoute;```
-
-<div class="dialog dialog-warning">You don't have to set your classes into the App namespace. ( ie. ~~```App.ApplicationRoute = Ember.Route.extend({}); ```~~ ), but you have to import your *App* from the *app* module with ```import App from 'ember-crud-example/app';```.
-</div>
-
-**ember-crud-example** is the namespace and it's configured via the *namespace* property in **/package.json**.
-
 <span id="routes"></span>
 ### Routes
 
-<div class="dialog dialog-warning">If you're not sure where to start planning your application, start with routes.</div>
+<div class="dialog dialog-info">If you're not sure where to start planning your application, start with routes.</div>
 
 Routes are the entry point to your application. The example app allows the user to upload photos and add title and description to each photo. So we start with urls where the user will be able to perform these actions.
 
+* **/** - root of the application
 * **/photos/** - show a list of photos
 * **/photos/new** - add a new photo
 * **/photo/:id** - see an existing photo
@@ -133,16 +68,64 @@ Ember's class naming conventions can be tricky especially around the route class
 
 **ApplicationRoute** is the brain of the example app. It listens for important events that happen in the application and handles them appropriately.
 
-<div class="dialog dialog-warning">When starting, handle actions that are triggered by your templates in the application route. Later, when you need more granular control, you can refactor your app to handle them closer to the template ( ie. a nested route, a controller or a view )</div>
+<div class="dialog dialog-info">When starting, handle actions in the application route. Later, when you need more granular control, you can refactor your app to handle them deeper in your app.</div>
 
-In the example app, all actions are hanled in **/app/routes/application.js**. **ApplicationRoute** is also responsible for handling transitions from one route to another.
+In the example app, all actions are handled in **/app/routes/application.js**. **ApplicationRoute** is also responsible for handling transitions from one route to another.
+
+If you look at the **actions** property in **ApplicationRoute**, you can get a birds eye view of all of the actions that are handled by this application. **edit**, **create**, **update** and **remove** are the CRUD operations. They're responsible for updating the persistence layer. I created a simple HTML5 localStorage based persistence layer with a simple API to make it clearer what happens when the CRUD operations are performed.
+
+Ember expects nested routes to be rendered inside of its resource's template. This means that when accessing a nested route, by default, both the resource template and the nested route template are rendered.
+
+<div class="dialog dialog-warning">Nested templates are rendered into an ```{{outlet}}``` in the resource's template. If the resource's template doesn't have an ```{{outlet}}``` then the nested route's template will **not be** rendered.</div>
+
+#### IndexRoute
+
+**IndexRoute**, located in **/app/routes/index.js**, is displayed when the user accesses the root url of the application(ie. **/**). In the example app, we want to redirect the users to the **PhotosRoute**, so we call ```this.transitionTo('photos')``` in **beforeModel** hook.
+
+<div class="dialog dialog-info">Routes have 3 model related hooks that you can use to transition to other routes and handle validation. **beforeModel** is called before the route queries for models. **model** must return the model or models that will be bound to the controller. **afterModel** can be used to perform transitions after models were resolved.</div>
 
 #### PhotosRoute
 
 **PhotosRoute**(in **/app/routes/photos.js**) shows a list of uploaded photos and nests **NewPhotosRoute**(in **/app/routes/photos/new.js**).
 
-<div class="dialog dialog-warning">Ember expects nested routes to be rendered inside of its resource's template. This means that when accessing a nested route, by default, both the resource template and the nested route template are rendered.</div>
-
-<div class="dialog dialog-danger">Nested templates are rendered into an ```{{outlet}}``` in the resource's template. If the resource's template doesn't have an ```{{outlet}}``` then the nested route's template will **not be** rendered.</div>
-
 In the example app, we want to show the new photo form when on the **NewPhotosRoute** or list of photos when on the **PhotosRoute**. This means that the **PhotosRoute** exists in 2 states: the list or the form. The template for **PhotosRoute**, located in **/app/templates/photos.hbs** has ```{{if isOpenNew}}``` is true then show ```{{outlet}}```, otherwise show the list. 
+
+<span id="models"></span>
+### Models
+
+<div class="dialog dialog-info">*Ember Data* provides **Ember.Model** but that doesn't mean that Ember requires *Ember Data*.</div>
+
+In Ember world, *model* has several meanings. Lower case *model* refers to an object that contains data that's presented in the template. It's used this way in the **Ember.Route** where the route must handle data that will be bound to the controller and the template. Capital case *Model* refers to the class that you would extend to define model types for your application. Usually, the persistence library will provide this class for you.
+
+In the example app, I created a persistence library that uses *HTML5 localStorage* and it provides a **Model** class, located in **/app/models/index.js**. **Photo** class, located in **/app/models/photo.js**, extends **Model** class.
+
+<span id="controllers"></span>
+### Controllers
+
+Controllers are the glue between the route and the template. The route is responsible for setting up the controller using the **setupController** hook. *Ember Data* automatically sets the return value of route's **model** hook to the controller's **content** property. The template is bound to the controller which allows you to define custom properties that are available in the template. You can also bind the **content** property to any other object that you can access via ```this.get(path)``` within the controller. 
+
+In the example app, I wanted to show a list of photos in the **PhotosRoute**, I could have used the route's **setupController** to set the **content** property on the **PhotosController** , but that would only show photos that were loaded when the route was first rendered. I wanted the list to update automatically when items are added or removed, so I bound the content property to the list of photos in the persistence layer using path **storage.cache.photo**. Look in **/app/controllers/photos.js** to see how this is done.
+
+<span id="persistence-layer"></span>
+### Persistence Layer
+
+The persistence library that I created is like training wheels for your app. Its just enough to work and provide a CRUD like API for storing records in localStorage. The library is located in **/app/utils/local-storage.js**.
+
+This persistance layer creates a singleton cache object that has as properties objects that are stored in localStorage. Essentially, for every item in localStorage, the persistance layer has an object in the cache.
+
+<div class="dialog dialog-info">You can inspect the cache in Chrome DevTools Console by running ```cache = App.__container__.lookup('cache:main')```.</div>![Inspect the cache](inspect-cache.jpg)
+
+The library has a few methods that are helpful to know when playing around with the code. 
+
+* ```this.storage.create( model )``` - stores a newly created model in localStorage
+* ```this.storage.read( modelClass, guid )``` - retrieve a model of specific class and guid from localStorage
+* ```this.storage.update( model )``` - update model in localStorage
+* ```this.storage.remove( model )``` - remove model from localStorage ( instead of delete, because delete is a reserved keyword )
+* ```this.storage.findAll( modelClass )``` - return array of all objects of given class
+* ```this.storage.refresh( modelClass )``` - you only need to call this if you need to force the cache to update
+
+Storage object is injected into every route and controller and is available using ```this.storage```.
+
+<span id="injections"></span>
+### Injections
+

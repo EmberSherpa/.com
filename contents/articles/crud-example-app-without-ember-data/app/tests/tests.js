@@ -76,7 +76,7 @@ define("ember-crud-example/tests/acceptance/photo_edit_test",
     });
 
   });
-define("ember-crud-example/tests/acceptance/photos_new_test",
+define("ember-crud-example/tests/acceptance/photo_new_test",
   ["ember-crud-example/app"],
   function(App) {
     "use strict";
@@ -93,7 +93,7 @@ define("ember-crud-example/tests/acceptance/photos_new_test",
     });
 
     test("renders", function(){
-      visit('/photos/new').then(function(){
+      visit('/photo/new').then(function(){
         ok(exists("legend:contains('New photo')"));
         ok(exists("button:contains('Create')"));
       });
@@ -163,15 +163,15 @@ define("ember-crud-example/tests/unit/routes/index_test",
     });
   });
 define("ember-crud-example/tests/unit/routes/photos/new_test",
-  ["ember-crud-example/routes/photos/new","ember-crud-example/app","ember-crud-example/utils/local-storage"],
-  function(New, App, LocalStorage) {
+  ["ember-crud-example/app","ember-crud-example/routes/photo/new","ember-crud-example/utils/local-storage"],
+  function(App, New, LocalStorage) {
     "use strict";
 
     var route;
 
     module("Unit - PhotosNewRoute", {
       setup: function(){
-        route = App.__container__.lookup('route:photos.new');
+        route = App.__container__.lookup('route:photo.new');
       }
     });
 
