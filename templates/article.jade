@@ -9,8 +9,14 @@ block content
     .row-fluid
       .span9
         != page.html
-        h3(id="comments") Comments
-        +disqus()
       aside.span3
         +menu_nav("Table of Contents")
-        +menu_nav("Links")
+        +share_menu()        
+    .row-fluid.mtl
+      .span9
+        p
+          strong What do you think? Did I miss something? Go a question? Leave me a comment and I'll do my best to respond to everyone.
+        +disqus()
+      aside.span3
+        +share_menu()
+        +menu_nav("External Links")

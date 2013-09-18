@@ -159,3 +159,13 @@ mixin menu_nav(name)
           li
             a(href=value)= index
 
+mixin twitter_button()
+  a.twitter-share-button(href="https://twitter.com/share", data-via="embersherpa", data-hashtags="EmberJS") Tweet
+  script.
+    !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
+
+mixin share_menu()
+  ul.nav.nav-list.nav-list-vivid
+    li.nav-header Share
+    li
+      +twitter_button()
