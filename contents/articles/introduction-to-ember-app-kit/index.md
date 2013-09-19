@@ -21,7 +21,7 @@ External Links:
   Bower: "http://bower.io/"
 ---
 
-Most Ember demos show all of the JavaScript and HTML in one file. This is convinient for demo purposes but that's not how real applications are written. When writing large applications, you need a tight workflow that's well integrated with your toolset to make sure that you make the most the time that you spend writing code. You could try to develop this workflow, which could take months or you could start your project with *Ember App Kit*.
+Most Ember demos show all of the JavaScript and HTML in one file. This is convenient for demo purposes but that's not how real applications are written. When writing large applications, you need a tight workflow that's well integrated with your toolset to make sure that you make the most the time that you spend writing code. You could try to develop this workflow, which could take months or you could start your project with *Ember App Kit*.
 
 *Ember App Kit* is a well integrated toolset that you can use as a foundation for your project. Out of the box, *Ember App Kit* includes *Grunt* - task runner, *JSHint* - linter, *QUnit* - testing framework, *Karma* - test runner, *ECMAScript 6* modules and *Bower* - client side package manager. 
 
