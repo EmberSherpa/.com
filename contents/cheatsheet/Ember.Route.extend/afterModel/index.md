@@ -12,5 +12,3 @@ template: topic.jade
 ---
 
 This hook is *executed* when model is resolved.
-
-[codemodule]cancel-transition[/codemodule]
