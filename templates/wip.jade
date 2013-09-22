@@ -1,4 +1,4 @@
-extends layout
+extends index
 include mixins
 
 block content
@@ -7,12 +7,13 @@ block content
       h1.span12
         +escaped("title")
     .row
-      .span12
+      .span8
         each article in env.helpers.get_children(page)
           article
             header
-              h2
+              h5
                 a(href=article.url)
                   +escaped( "title", article )
-              p.h5.description
+              p.description
                 +escaped( "description", article )
+      .span4

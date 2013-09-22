@@ -1,3 +1,11 @@
+mixin escaped(property, that)
+  - if ( typeof that === 'undefined' ) { that = page }
+  = env.helpers.get(that, property)
+
+mixin unespaced(property, that)
+  - if ( typeof that === 'undefined' ) { that = page }
+  != env.helpers.get(that, property)
+
 mixin space
   &#160;
 

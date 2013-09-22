@@ -1,3 +1,5 @@
+# This plugin should be refactored to be more generic.
+
 module.exports = ( env, callback ) ->
 
   fs            = require 'fs'

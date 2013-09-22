@@ -7,7 +7,6 @@ module.exports = (env, callback) ->
   MarkdownPage      = env.plugins.MarkdownPage
   ContentTree       = env.ContentTree
   ContentPlugin     = env.ContentPlugin
-  apply_shortcodes  = env.plugins.apply_shortcodes
 
   marked            = require 'marked'
   marked.setOptions env.config.markdown or {}
@@ -21,13 +20,13 @@ module.exports = (env, callback) ->
         # skip
       else if value instanceof ContentTree
         index.topics.push nest value
-      else if value instanceof OnePagerPage
+      else if value instanceof CheatsheetPage
         index.topics.push value
       else
         # skip
     return index
 
-  onePagerView = (env, locals, contents, templates, callback) ->
+  CheatsheetView = (env, locals, contents, templates, callback) ->
     ### Behaves like templateView but allso adds topics to the context ###
 
     if @template == 'none'
@@ -50,14 +49,14 @@ module.exports = (env, callback) ->
 
     template.render ctx, callback
 
-  class OnePagerPage extends MarkdownPage
+  class CheatsheetPage extends MarkdownPage
     directory: null
     topics: []
 
     constructor: ( @filepath, @metadata, @markdown ) ->
       @directory = path.dirname( @filepath.full )
 
-    getView: -> 'onepager'
+    getView: -> 'cheatsheet'
 
     setTopics: ->
       ContentTree.fromDirectory env, @directory, ( err, tree ) =>
@@ -158,7 +157,7 @@ module.exports = (env, callback) ->
       items[ items.length - 1 ].last = true
       return items
 
-  OnePagerPage.fromFile = (args...) ->
+  CheatsheetPage.fromFile = (args...) ->
     MarkdownPage.fromFile.apply(this, args)
 
   env.helpers.breadcrumbText = ( page ) ->
@@ -167,12 +166,12 @@ module.exports = (env, callback) ->
     else
       page.metadata.title
 
-  env.registerContentPlugin 'topics', 'cheatsheet/**/*.*(markdown|mkd|md)', OnePagerPage
+  env.registerContentPlugin 'topics', 'cheatsheet/**/*.*(markdown|mkd|md)', CheatsheetPage
 
   # register the template view used by the page plugin
-  env.registerView 'onepager', onePagerView
+  env.registerView 'cheatsheet', CheatsheetView
 
-  env.plugins.OnePagerPage = OnePagerPage
+  env.plugins.CheatsheetPage = CheatsheetPage
 
   env.helpers.nest = nest
   env.helpers.marked = marked

@@ -8,7 +8,8 @@ block content
         h1= page.title
     .row-fluid
       .span9
-        != page.html
+        - var html = env.plugins.apply_shortcodes.call( page, page.html )
+        != html
       aside.span3
         +share_menu()        
         +menu_nav("Table of Contents")

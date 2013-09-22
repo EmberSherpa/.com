@@ -9,12 +9,11 @@
   "plugins": [
     "./node_modules/wintersmith-browserify",
     "./node_modules/wintersmith-less",
-    "./plugins/onepager",
-    "./plugins/codemodule",
+    "./plugins/helpers",
+    "./plugins/cheatsheet",
     "./plugins/shortcodes",
-    "./plugins/codemodule-shortcode",
+    "./plugins/shortcodes/dialogs",
     "./plugins/typeahead",
-    "./plugins/paginator",
     "./plugins/env-patch"
   ],
   "port": "2777",
@@ -39,10 +38,5 @@
   "codemodule": {
     "pattern": "cheatsheet/**/*.coffee",
     "template": "test.jade"
-  },
-  "paginator": {
-    "first": "articles/index.html",
-    "perPage": 3,
-    "template": "index.jade"
   }
 }
