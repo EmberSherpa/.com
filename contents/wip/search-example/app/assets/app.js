@@ -22,20 +22,10 @@ define("appkit/controllers/search",
   function() {
     "use strict";
     var SearchController = Ember.Controller.extend({
-      needs: [ 'search/results' ],
-      keywordBinding: 'controllers.search/results.keyword'
+  
     });
 
     return SearchController;
-  });
-define("appkit/controllers/search/results",
-  [],
-  function() {
-    "use strict";
-    var SearchResultsController = Ember.ArrayController.extend({
-    });
-
-    return SearchResultsController;
   });
 define("appkit/routes",
   [],
@@ -82,21 +72,16 @@ define("appkit/routes/search/results",
   function() {
     "use strict";
     var SearchResultsRoute = Ember.Route.extend({
-
       model: function(params) {
-        this.set('keyword', params.keyword);
+        this.controllerFor('search').set('keyword', params.keyword);
         return _.range(0, 10).map(function(number){
           return Em.Object.create({
             name: params.keyword + number.toString()
           });
         }); 
       },
-      setupController: function( controller, models ) {
-        controller.set('content', models);
-        controller.set('keyword', this.get('keyword'));
-      },
       deactivate: function() {
-        this.set('controller.keyword', '');
+        this.controllerFor('search').set('keyword', '');
       }
     });
 

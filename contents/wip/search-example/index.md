@@ -54,37 +54,29 @@ App.SearchRoute = Ember.Route.extend({
 });
 ```
 
-#### ResultsSearchRoute
+#### SearchResultsRoute
 
 Generate search results based on keyword passed in params. 
 
 ```
 App.SearchResultsRoute = Ember.Route.extend({
   model: function(params) {
-    // need to keep track of search keyword to set in the controller
-    this.set('keyword', params.keyword);  
+    this.controllerFor('search').set('keyword', params.keyword);
     return _.range(0, 10).map(function(number){
       return Em.Object.create({
         name: params.keyword + number.toString()
       });
     }); 
   },
-  setupController: function( controller, models ) {
-    // I have to setup content property manually because I'm overriding setupController
-    controller.set('content', models);
-    // set the keyword into SearchResultsController
-    controller.set('keyword', this.get('keyword'));
-  },
   deactivate: function() {
-    // when leaving SearchResultsController, reset the keyword property
-    this.set('controller.keyword', '');
+    this.controllerFor('search').set('keyword', '');
   }
 });
 ```
 
 **model**: Take keyword from params and create an array of 10 Ember Objects.
 
-<div class="dialog dialog-warning">I'm using <a href="http://underscorejs.org/">underscore.js</a> library for the _.range() function.</div>
+[warning]I'm using [underscore.js](http://underscorejs.org/) library for the _.range() function.[/warning]
 
 ### Controllers
 
@@ -94,12 +86,11 @@ Setting default value of *keyword* property which is used by the template.
 
 ```
 App.SearchController = Ember.Controller.extend({
-  needs: 'searchResults', // need to get the 
-  keywordBinding: 'controllers.searchResults.keyword'
+
 });
 ```
 
-[warning]I didn't test the path in *needs* and keywordBinding properties. It might be wrong. If its wrong, please leave a comment or fix it in GitHub.[/warning]
+[warning]**App.SearchController** has to be explicitely defined because **App.SearchResultsRoute** uses it in **mode** attribute. Without explicitely defining it, Ember throws error when accessing the **App.SearchResultsRoute** via url.[/warning]
 
 ### Templates
 
