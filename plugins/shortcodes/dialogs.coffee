@@ -8,10 +8,7 @@ module.exports = ( env, callback ) ->
   register_dialog_shortcode = (level) ->
     register_shortcode level, ( attr, content ) ->
       unless @ instanceof ContentPlugin then logger.log( logger.WARN, "You have to bind apply_shortcodes to the page, try apply_shortcodes.call(@, content)" )
-      template = """
-      .dialog.dialog-#{ level }
-        = content
-      """
+      template = """.dialog.dialog-#{ level }!= content"""
       ctx =
         content: content
       

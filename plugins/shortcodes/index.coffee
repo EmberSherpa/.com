@@ -7,6 +7,7 @@ module.exports = ( env, callback ) ->
     this.registered = []
 
   register_shortcode = ( code, replacer ) ->
+    env.logger.log "verbose", "Registered shortcode: #{code}"
     Shortcodes.registered.push new Shortcode code, replacer
 
   apply_shortcodes = ( content ) ->

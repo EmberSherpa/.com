@@ -2,6 +2,7 @@
 title: Adjusting to Ember App Kit
 description: Everything you need to know about what do differently when using Ember App Kit
 tags: []
+template: article.jade
 ---
 
 ### Templates

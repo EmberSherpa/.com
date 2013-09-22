@@ -1,7 +1,7 @@
 ---
 title: Understanding application register & inject methods in Ember.js
 tags: [ Ember, development ]
-template: 
+template: article.jade
 date: 2013-09-03
 description: detailed summary of App.register and App.inject methods
 author: taras

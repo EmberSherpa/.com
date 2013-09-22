@@ -17,3 +17,4 @@ block content
               p.description
                 +escaped( "description", article )
       .span4
+        != env.plugins.apply_shortcodes.call(page, page.html) 
