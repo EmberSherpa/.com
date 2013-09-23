@@ -167,6 +167,14 @@ mixin menu_nav(name)
           li
             a(href=value)= index
 
+mixin toc()
+  if page.metadata["Table of Contents"]
+    ul.nav.nav-list.nav-list-vivid
+      li.nav-header Table of Contents
+      each item in page.metadata["Table of Contents"]
+        li
+          a(href=item["href"])= item["title"]
+
 mixin twitter_button()
   a.twitter-share-button(href="https://twitter.com/share", data-via="embersherpa", data-hashtags="EmberJS") Tweet
   script.
