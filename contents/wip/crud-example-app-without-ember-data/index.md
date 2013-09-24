@@ -28,12 +28,14 @@ Table of Contents:
   photo.form Template: "#photo.form-Template"
   photo.new Template: "#photo.new-Template"
   Conclusion: "#Conclusion"
+External Links:
+  Ember Inspector: https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi
 ---
 *Ember Data* is one of the most ambitious undertakings in recent JavaScript history. It carries the promise of a persistance library that makes it easy to build large browser applications that interact with diverse APIs. *Ember Data* is evolving quickly as the Ember Core Team experiments and iterates the library to create a generalized solution that will work for many use cases. These changes introduce code with kinks that haven't been ironed out yet. When using *Ember Data* developers often find themselves digging into the library in order to find where the problem originates.
 
 Digging into *Ember Data* source code is easier for experienced Ember developers who are familiar with *Ember Data*'s history and Ember community. For a beginner who is building a small browser app this can be extremely frustrating because it's difficult to find the source of the problem. Innevitably beginners waste days trying to figure out how to get their apps to make simple requests to their non conventional APIs. 
 
-This article was written as an alternative to that experience. The goal of this article is to help you undestand Ember architecture and allow you to buid simple apps without relying on *Ember Data*.
+This article was written as an alternative to that experience. The goal of this article is to help you undestand Ember architecture and allow you to build simple apps without relying on *Ember Data*.
 
 There will come a day when *Ember Data* is a rock solid library that is easier to use than writing your own AJAX requests. Until that day, I recommend learning Ember architecture and rolling out your own persistance layer. This will give you the added bonus of understanding how *Ember Data* ties into *Ember* and what problems it's trying to solve for you. 
 
@@ -59,6 +61,8 @@ var App = Ember.Application.create({
 });
 ```
 
+[info]Ember expects **rootElement** to be a *jQuery* selector where the app will be injected into the DOM. If you do not specify a **rootElement**, then the app will be appended to the *body* element.[/info]
+
 [h3]Routes[/h3]
 
 [info]Routes is a good place to start planning your application. If you're not sure where to start, start with routes.[/info]
@@ -79,7 +83,7 @@ App.Router.map(function(){
 })
 ```
 
-Ember has two different kinds of routes: resources and nested routes. Resources can nest other resources and routes, and are added with ```this.resource( name, options, fn )```. Nested resources **can not** have other resources or routes under them and are added with ```this.route( name, options )```. 
+Ember has two different kinds of routes: resources and nested routes. Resources can nest other resources and routes, and are added with ```this.resource( name, options, fn )```. Nested routes **can not** have other resources or routes under them and are added with ```this.route( name, options )```. 
 
 [warning]Ember expects nested routes to be rendered inside of its parent template. It also assumes that the model returned by the parent is sufficient for rendering the nested route. If you want the router to load models for the nested route every time, then you have to make it a resource. This is why "photo.new" is a resource and not a route.[/warning]
 
@@ -131,7 +135,9 @@ App.ApplicationRoute = Ember.Route.extend({
 
 [h4]IndexRoute[/h4]
 
-**IndexRoute** is displayed when the user accesses the root url of the application(ie. **/**). In the example app, we want to redirect the users to the **PhotosRoute**, so we call ```this.transitionTo('photos')``` in **beforeModel** hook.
+When the user hits the root(ie **/**) of our app, the router will want to take the user to the **IndexRoute**. The **IndexRoute** would render **index** template into the *outlet* of the **application** template. This is not what we want.
+
+In our app, we want to take the user directly to a list of photos. To do this, we'll transition the user to the **PhotosRoute** by calling ```this.transitionTo('photos')``` in **beforeModel** hook.
 
 ```javascript
 App.IndexRoute = Ember.Route.extend({
@@ -158,7 +164,7 @@ App.PhotosRoute = Ember.Route.extend({
 
 [h4]PhotoRoute[/h4]
 
-**PhotoRoute** shows an existing photo. The **model** hook takes the guid from request parameters and uses to match a model. The **serialize** hook converts a model to GUID that's used to generate url for a model.
+**PhotoRoute** shows an existing photo. By default, Ember looks up the id of the model to be retrieved, but in our case we want to use the **guid** instead, therefore we make use of the **serialize** hook of the route to provide the different lookup parameter. The **model** hook takes the guid from request parameters and uses to match a model. The **serialize** hook converts a model to GUID that's used to generate url for a model.
 
 ```javascript
 App.PhotoRoute = Ember.Route.extend({
@@ -173,7 +179,7 @@ App.PhotoRoute = Ember.Route.extend({
 
 [h4]PhotoNewRoute[/h4]
 
-**PhotoNewRoute**'s **model** hook create a new Photo that's used in the form.
+**PhotoNewRoute**'s **model** hook create a new Photo that's used in the form.  This model is still not saved in the *localStorage*, we will do it later when the user submit's the form.
 
 ```javascript
 App.PhotoNewRoute = Ember.Route.extend({
@@ -346,7 +352,7 @@ The *View Tree* shows what templates are loaded in what page element. You can al
   </tr>
   {{#each}}
     <tr>
-      <td {{action 'goToPhoto' this}}><img class="thumbnail" {{bindAttr src=thumbnail}} /></td>
+      <td {{action 'goToPhoto' this}}><img class="thumbnail" {{bind-attr src=thumbnail}} /></td>
       <td {{action 'goToPhoto' this}}>{{title}}</td>
       <td {{action 'goToPhoto' this}}>{{description}}</td>
       <td>
@@ -375,7 +381,7 @@ We didn't explicitely declare a **PhotoController** so Ember automatically gener
 <div class="container">
   <div class="row preview">
     <div class="col-md-4">
-      <img {{bindAttr src=image}} class="thumbnail pull-right" />
+      <img {{bind-attr src=image}} class="thumbnail pull-right" />
     </div>
     <div class="col-md-8">
       <h2>{{title}}</h2>
@@ -432,7 +438,7 @@ We declared **PhotoEditController** with ```needs: ['photo']```. This makes it p
     {{view Ember.TextArea valueBinding=description classNames="form-control" id="textareaDescription"}}
   </div>
 </div>
-<input type="hidden" {{bindAttr value=guid}} id="guid"/>
+<input type="hidden" {{bind-attr value=guid}} id="guid"/>
 ```
 
 ```{{#canvas-file}}``` is a helper that's registered by the **CanvasFileComponent**. I created this component to keep the image upload functionality better organized. For now, its important to note that the only way that you can configure a component is via the attributes in the template. **value** attribute allows you to pass the model property that the value of the component will be bound to.
