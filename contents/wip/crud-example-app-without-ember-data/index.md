@@ -29,13 +29,13 @@ Table of Contents:
   photo.new Template: "#photo.new-Template"
   Conclusion: "#Conclusion"
 ---
-*Ember Data* is one of the most ambitious undertakings in recent JavaScript history. It carries the promise of a persistance library that makes it easy to build large browser applications that interact with diverse APIs. *Ember Data* is evolving quickly as the Ember Core Team experiments and iterates the library to create a generalized solution that will work for many use cases. These changes introduce code with kinks that haven't been ironed out yet. When using *Ember Data* developers often find themselves digging into the library to look where the problem originates.
+*Ember Data* is one of the most ambitious undertakings in recent JavaScript history. It carries the promise of a persistance library that makes it easy to build large browser applications that interact with diverse APIs. *Ember Data* is evolving quickly as the Ember Core Team experiments and iterates the library to create a generalized solution that will work for many use cases. These changes introduce code with kinks that haven't been ironed out yet. When using *Ember Data* developers often find themselves digging into the library in order to find where the problem originates.
 
-Digging into *Ember Data* source code is easier for experienced Ember developers who are familiar with *Ember Data*'s history and Ember community. For a beginner, who is building a small browser app this can be extremely frustrating because its difficult to find the source of the problem. Innevitably, beginners waste days trying to figure out how to get their apps to make simple requests to their non conventional APIs. 
+Digging into *Ember Data* source code is easier for experienced Ember developers who are familiar with *Ember Data*'s history and Ember community. For a beginner who is building a small browser app this can be extremely frustrating because it's difficult to find the source of the problem. Innevitably beginners waste days trying to figure out how to get their apps to make simple requests to their non conventional APIs. 
 
 This article was written as an alternative to that experience. The goal of this article is to help you undestand Ember architecture and allow you to buid simple apps without relying on *Ember Data*.
 
-There will come a day when *Ember Data* is a rock solid library that is easier to use than writing your own AJAX requests. Until that day, learn Ember architecture and roll your own persistance layer. This will give you the added bonus of understanding how *Ember Data* ties into *Ember* and what problems it tries to solve for you. 
+There will come a day when *Ember Data* is a rock solid library that is easier to use than writing your own AJAX requests. Until that day, I recommend learning Ember architecture and rolling out your own persistance layer. This will give you the added bonus of understanding how *Ember Data* ties into *Ember* and what problems it's trying to solve for you. 
 
 This articles walks you through creating a CRUD app without *Ember Data* to give you a better understanding of Ember architecture.
 
@@ -63,7 +63,7 @@ var App = Ember.Application.create({
 
 [info]Routes is a good place to start planning your application. If you're not sure where to start, start with routes.[/info]
 
-We want the our app to allow users to upload photos and add title and description to each photo. So we start with urls where the user will be perform these actions.
+We want our app to allow users to upload photos and add a title and description to each photo. So we start with urls where the user will perform these actions.
 
 ```javascript
 App.Router.map(function(){
@@ -95,7 +95,7 @@ Ember's class naming conventions can be tricky especially around the route class
 
 In the example app, all actions are handled in **ApplicationRoute**. It is also responsible for handling transitions from one route to another.
 
-If you look at the **actions** property in **ApplicationRoute**, you can get a birds eye view of all of the actions that are handled by this application. **edit**, **create**, **update** and **remove** are the CRUD operations. They're responsible for updating the persistence layer. I created a simple HTML5 localStorage based persistence layer with a simple API to make it clearer what happens when the CRUD operations are performed.
+If you look at the **actions** property in **ApplicationRoute**, you can get a birds eye view of all of the actions that are handled by this application. **edit**, **create**, **update** and **remove** are the CRUD operations. They're responsible for updating the persistence layer. I created a simple HTML5 localStorage based persistence layer with a simple API to make it clearer as to what happens when the CRUD operations are performed.
 
 ```javascript
 App.ApplicationRoute = Ember.Route.extend({
@@ -146,7 +146,7 @@ App.IndexRoute = Ember.Route.extend({
 
 [h4]PhotosRoute[/h4]
 
-**PhotosRoute** shows a list of uploaded photos. This route is responsible for getting models from storage and returning them to the router to be bound to the controller.
+**PhotosRoute** shows a list of uploaded photos. This route is responsible for getting models from storage and returning them to the router that is to be bound to the controller.
 
 ```javascript
 App.PhotosRoute = Ember.Route.extend({
@@ -361,7 +361,7 @@ The *View Tree* shows what templates are loaded in what page element. You can al
 
 ```{{#each}}``` helper is bound to the controller's **content** property. In **PhotosController** we bound the **content** property to **storage.cache.photo** so when an item in the storage cache changes *{{#each}}* automatically updates.
 
-```{{action}}``` helper triggers the action that's specified by the first parameter and passes to it the remaining parameters. ```this``` refers to instance of the *model* that that is being rendered in this row.
+```{{action}}``` helper triggers the action that's specified by the first parameter and passes to it the remaining parameters. ```this``` refers to an instance of the *model* that is being rendered in this row.
 
 [h4]photo Template[/h4]
 
@@ -437,7 +437,7 @@ We declared **PhotoEditController** with ```needs: ['photo']```. This makes it p
 
 ```{{#canvas-file}}``` is a helper that's registered by the **CanvasFileComponent**. I created this component to keep the image upload functionality better organized. For now, its important to note that the only way that you can configure a component is via the attributes in the template. **value** attribute allows you to pass the model property that the value of the component will be bound to.
 
-```{{view}}``` helper allow you to render a view. We use it to rember input fields and textareas. You can bind their values with **valueBinding** attribute.
+```{{view}}``` helper allows you to render a view. We use it to render input fields and textareas. You can bind their values with **valueBinding** attribute.
 
 [h4]photo.new Template[/h4]
 
@@ -458,7 +458,7 @@ Like **photo.edit** we're able to reuse the **photo.form** without unnecessary d
 
 [h3]Conclusion[/h3]
 
-This article is first in a series of articles that describe what it takes to build a complete CRUD app without Ember Data. In this article, we covered all of the basic CRUD operations but we didn't cover many other important topics. In follow up articles, we'll add validation, content preloading an authentication. In the mean time, you can try the code in this article and play with the *Ember App Kit* version in the [GitHub repository](https://github.com/taras/ember-crud-example).
+This article is first in a series of articles that describe what it takes to build a complete CRUD app without Ember Data. In this article, we covered all of the basic CRUD operations but we didn't cover many other important topics. In follow up articles we'll add validation, content preloading and authentication. In the mean time, you can try out the code in this article and play with the *Ember App Kit* version in the [GitHub repository](https://github.com/taras/ember-crud-example).
 
 <div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example" target="_blank">GitHub</a></div>
 
