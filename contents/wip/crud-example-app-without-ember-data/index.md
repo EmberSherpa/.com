@@ -16,15 +16,15 @@ There will come a day when *Ember Data* is a rock solid library that is easier t
 
 This articles walks you through creating a CRUD app without *Ember Data* to give you a better understanding of Ember architecture.
 
+<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">GitHub</a></div>
+
 [h3]Application[/h3]
 
 The Ember CRUD Example app does basic CRUD functionality and stores the created entries in HTML5 localStorage.
 
-<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example#todo" target="_blank">TODOs</a></div>
-
 Create an app instance and configure it to log useful information.
 
-```
+```javascript
 // log binding activities
 Ember.LOG_BINDINGS = true;
 
@@ -44,7 +44,7 @@ var App = Ember.Application.create({
 
 The example app allows the user to upload photos and add title and description to each photo. So we start with urls where the user will be perform these actions.
 
-```
+```javascript
 App.Router.map(function(){
   // list of all uploaded photos
   this.resource('photos',     {path:'/photos' }); 
@@ -76,7 +76,7 @@ In the example app, all actions are handled in **ApplicationRoute**. It is also 
 
 If you look at the **actions** property in **ApplicationRoute**, you can get a birds eye view of all of the actions that are handled by this application. **edit**, **create**, **update** and **remove** are the CRUD operations. They're responsible for updating the persistence layer. I created a simple HTML5 localStorage based persistence layer with a simple API to make it clearer what happens when the CRUD operations are performed.
 
-```
+```javascript
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
     goToNewPhoto: function () {
@@ -112,7 +112,7 @@ App.ApplicationRoute = Ember.Route.extend({
 
 **IndexRoute** is displayed when the user accesses the root url of the application(ie. **/**). In the example app, we want to redirect the users to the **PhotosRoute**, so we call ```this.transitionTo('photos')``` in **beforeModel** hook.
 
-```
+```javascript
 App.IndexRoute = Ember.Route.extend({
   beforeModel: function( transition ) {
     // redirect root to photos
@@ -127,7 +127,7 @@ App.IndexRoute = Ember.Route.extend({
 
 **PhotosRoute** shows a list of uploaded photos. This route is responsible for getting models from storage and returning them to the router to be bound to the controller.
 
-```
+```javascript
 App.PhotosRoute = Ember.Route.extend({
   model: function() {
     return this.storage.findAll(App.Photo);
@@ -139,7 +139,7 @@ App.PhotosRoute = Ember.Route.extend({
 
 **PhotoRoute** shows an existing photo. The **model** hook takes the guid from request parameters and uses to match a model. The **serialize** hook converts a model to GUID that's used to generate url for a model.
 
-```
+```javascript
 App.PhotoRoute = Ember.Route.extend({
   model: function( params ) {
     return this.storage.find(App.Photo, params.guid);
@@ -154,7 +154,7 @@ App.PhotoRoute = Ember.Route.extend({
 
 **PhotoNewRoute**'s **model** hook create a new Photo that's used in the form.
 
-```
+```javascript
 App.PhotoNewRoute = Ember.Route.extend({
   model: function() {
     // provide a new photo to the template
@@ -173,7 +173,7 @@ In Ember world, the word *model* has several meanings. Lower case *model* refers
 
 Since we're rolling our own persistance layer, we'll define a **App.Model** class that we'll use as a base for our models.
 
-```
+```javascript
 App.Model = Ember.Object.extend( Ember.Copyable, {
   init: function() {
     // make sure that class has a storageKey property, otherwise throw an error
@@ -231,7 +231,7 @@ But what if you wanted to add a method to App.Thing that was not attached to an 
 
 For example,
 
-```
+```javascript
 App.People.reopenClass({
   'planet': "Earth"
 });
@@ -283,7 +283,7 @@ Controllers are the glue between the route and the template. The route is respon
 
 We want to show a list of photos in the **PhotosRoute**, we could use the route's **setupController** to set the **content** property on the **PhotosController** , but that would only show photos that were loaded when the route was first rendered. To make the list update automatically when items are added or removed, we bind the content property to the list of photos in the persistence layer using path **storage.cache.photo**. 
 
-```
+```javascript
 App.PhotosController = Ember.ArrayController.extend({
   contentBinding: 'storage.cache.photo'
 });
@@ -293,7 +293,7 @@ App.PhotosController = Ember.ArrayController.extend({
 
 The **PhotoEditController** only specifies that it **needs** the **Photo** controller. When you specify that a controller **needs** another controller, this controller gets the needed controllers added to its ```this.controllers``` property.
 
-```
+```javascript
 App.PhotoEditController = Ember.ObjectController.extend({
   needs: [ 'photo' ]
 });
@@ -301,22 +301,19 @@ App.PhotoEditController = Ember.ObjectController.extend({
 
 [h3]Templates[/h3]
 
-Ember loads templates according to a set of rules that sometimes might seem magical. It can be difficult to tell what template is being loaded or being expected. Once again, *Ember Inspector* comes to the rescue. *Ember Inspector* has 2 views that are helpful when troubleshooting templates.
+Ember loads templates according to a set of rules that can seem magical. It can be difficult to tell what template is being loaded or what name is being expected. Once again, *Ember Inspector* comes to the rescue. *Ember Inspector* has 2 views that are helpful when troubleshooting templates.
 
-The *Templates* column in *Routes* view show names that Ember expects when creating template files or referencing in code.
+The *Templates* column in *Routes* view shows names that Ember expects for every route.
 ![Ember Inspector Routes view](inspector-templates.jpg)
 [warning]This screenshot was generated from *Ember App Kit* version of this app. *Ember App Kit* uses "/" as a separator in template names. Without *Ember App Kit*, the template names use "." as separator.[/warning]
 
 The *View Tree* shows what templates are loaded in what page element. You can also use it to see what is loaded.
 ![Ember Inspector View Tree](inspector-view-tree.jpg)
-
 [h4]photos Template[/h4]
 
-[info]**photos** template is abound to **PhotosController** which extends **Ember.ArrayController**.[/info]
-
+**photos** template is bound to **PhotosController** which is an instance of **Ember.ArrayController**. Controllers that extend **Ember.ArrayController** have array as the value of their **content** property.
 ![photos Template in Inspector](templates-photos.jpg)
-
-```handlebars
+```html
 <button class="btn btn-large btn-primary new" {{action 'goToNewPhoto'}}>New photo</button>
 <table class="table table-striped">
   <tbody>
@@ -341,45 +338,107 @@ The *View Tree* shows what templates are loaded in what page element. You can al
 </table>
 ```
 
-```{{#each}}``` handlebars helper 
+```{{#each}}``` helper is bound to the controller's **content** property. In **PhotosController** we bound the **content** property to **storage.cache.photo** so when an item in the storage cache changes *{{#each}}* automatically updates.
 
-The *photos* template uses ```{{action}}``` *Handlebars* helper to trigger actions that are handled by the **ApplicationRoute**. 
+```{{action}}``` helper triggers the action that's specified by the first parameter and passes to it the remaining parameters. ```this``` refers to instance of the *model* that that is being rendered in this row.
 
-<span id="persistence-layer"></span>
-### Persistence Layer
+[h4]photo Template[/h4]
 
-The persistence library that I created is like training wheels for your app. Its just enough to work and provide a CRUD like API for storing records in localStorage. The library is located in **/app/utils/local-storage.js**.
+We didn't explicitely declare a **PhotoController** so Ember automatically generated one for us.
 
-This persistance layer creates a singleton cache object that has as properties objects that are stored in localStorage. Essentially, for every item in localStorage, the persistance layer has an object in the cache.
+![Photo template](templates-photo.jpg)
 
-<div class="dialog dialog-info">You can inspect the cache in Chrome DevTools Console by running ```cache = App.__container__.lookup('cache:main')```.</div>![Inspect the cache](inspect-cache.jpg)
+```{{outlet}}``` is where the template for **PhotoEditRoute** will be rendered. 
 
-The library has a few methods that are helpful to know when playing around with the code. 
+```html
+<div class="container">
+  <div class="row preview">
+    <div class="col-md-4">
+      <img {{bindAttr src=image}} class="thumbnail pull-right" />
+    </div>
+    <div class="col-md-8">
+      <h2>{{title}}</h2>
+      <p>{{description}}</p>  
+    </div>
+  </div>
+  <div class="row">
+    {{outlet}}
+  </div>
+</div>
+```
 
-* ```this.storage.create( model )``` - stores a newly created model in localStorage
-* ```this.storage.read( modelClass, guid )``` - retrieve a model of specific class and guid from localStorage
-* ```this.storage.update( model )``` - update model in localStorage
-* ```this.storage.remove( model )``` - remove model from localStorage ( instead of delete, because delete is a reserved keyword )
-* ```this.storage.findAll( modelClass )``` - return array of all objects of given class
-* ```this.storage.refresh( modelClass )``` - you only need to call this if you need to force the cache to update
+[h4]photo.edit Template[/h4]
 
-Storage object is injected into every route and controller and is available using ```this.storage```.
+We declared **PhotoEditController** with ```needs: ['photo']```. This makes it possible for us to bind our template directly to the value of **PhotoController**'s **content** property.
 
-<span id="injections"></span>
-### Injections
+```html
+{{#with controllers.photo.content}}
+<form class="form-horizontal">
+  <fieldset>
+    <legend>Edit photo</legend>
+    {{partial 'photo.form'}}
+  </fieldset>
+</form>
+<div class="btn-group">
+  <button class="btn btn-large btn-primary" {{action 'update' this}}>Update</button>
+  <button class="btn btn-large btn-danger" {{action 'cancel' this}}>Cancel</button>
+</div>
+{{/with}}
+```
 
-<span id="start"></span>
-### Get the code
+```{{#with}}``` helper allows us to change context for template between {{with}} and {{/with}}.
 
-<div class="dialog dialog-info">The example app is based on *Ember App Kit*. Read <a href="/articles/introduction-to-ember-app-kit">introduction to Ember App Kit</a> if you're not familiar with the tools that it provides.</div>
+```{{partial}}``` helper renders a template within its current context. This allows us to reuse the **photo.form** template on both **photo.edit** and **photo.new**.
 
-1. fork the [Ember CRUD Example](https://github.com/taras/ember-crud-example) repository on GitHub
-2. clone your fork to your computer
-3. in your working directory
-  1. install Node.js modules with ```npm install``` ( assuming you have npm installed, if not [Introduction to npm](http://howtonode.org/introduction-to-npm) )
-  2. install Bower components with ```bower install``` ( assuming you have bower installed, if not ```npm install -g bower```)
-  3. install Grunt with ```npm install -g grunt-cli``` if you don't already have it installed
-4. Verify that everything works
-  1. start the dev server with ```grunt server```
-  2. go to <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
-  3. your app should look like the <a href="app/index.html">demo</a>
+[h4]photo.form Template[/h4]
+
+```html
+<div class="form-group">
+  <label class="control-label col-lg-2" for="imageField">Image</label>
+  <div class="col-lg-10">
+    {{#canvas-file width=250 height=250 value=image}}Upload image{{/canvas-file}}
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-lg-2" for="inputTitle">Title</label>
+  <div class="col-lg-10">
+    {{view Ember.TextField valueBinding=title id="inputTitle" classNames="form-control"}}
+  </div>
+</div>
+<div class="form-group">
+  <label class="control-label col-lg-2" for="textareaDescription">Description</label>
+  <div class="col-lg-10">
+    {{view Ember.TextArea valueBinding=description classNames="form-control" id="textareaDescription"}}
+  </div>
+</div>
+<input type="hidden" {{bindAttr value=guid}} id="guid"/>
+```
+
+```{{#canvas-file}}``` is a helper that's registered by the **CanvasFileComponent**. I created this component to keep the image upload functionality better organized. For now, its important to note that the only way that you can configure a component is via the attributes in the template. **value** attribute allows you to pass the model property that the value of the component will be bound to.
+
+```{{view}}``` helper allow you to render a view. We use it to rember input fields and textareas. You can bind their values with **valueBinding** attribute.
+
+[h4]photo.new Template[/h4]
+
+Like **photo.edit** we're able to reuse the **photo.form** without unnecessary duplication.
+
+```html
+<form class="form-horizontal" role="form">
+  <fieldset>
+    <legend>New photo</legend>
+    {{partial 'photo.form'}}
+  </fieldset>
+</form>
+<div class="btn-group">
+  <button class="btn btn-large btn-primary" {{action 'create' content}}>Create</button>
+  <button class="btn btn-large btn-danger" {{action 'cancel' content}}>Cancel</button>
+</div>
+```
+
+### Conclusion
+
+This article is first in a series of articles that describe what it takes to build a complete CRUD app without Ember Data. In this article, we covered all of the basic CRUD operations but we didn't cover many other important topics. In follow up articles, we'll add validation, content preloading an authentication. In the mean time, you can try the code in this article and play with the *Ember App Kit* version in the [GitHub repository](https://github.com/taras/ember-crud-example).
+
+<div class="btn-group mbl mtm"><a href="app/" class="btn btn-success">Try the app</a><a href="app/tests/" class="btn btn-info">Run tests</a><a class="btn btn-warning" href="https://github.com/taras/ember-crud-example" target="_blank">GitHub</a></div>
+
+[info]The GitHub version of the app is based on *Ember App Kit*. If you're not familiar with **Ember App Kit** you can read my [introduction to Ember App Kit](/articles/introduction-to-ember-app-kit)[/info]
