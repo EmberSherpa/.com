@@ -4,7 +4,30 @@ template: article.jade
 tags: [ ember.js ]
 description: "Learn to understand Ember architecture by building a CRUD app without Ember Data."
 author: tarasm
-date: 2013-09-11 15:00
+date: 2013-09-25 15:00
+Table of Contents:
+  Application: "#Application"
+  Routes: "#Routes"
+  ApplicationRoute: "#ApplicationRoute"
+  IndexRoute: "#IndexRoute"
+  PhotosRoute: "#PhotosRoute"
+  PhotoRoute: "#PhotoRoute"
+  PhotoNewRoute: "#PhotoNewRoute"
+  Models: "#Models"
+  Model: "#Model"
+  Ember.Copyable Mixin: "#Ember.Copyable-Mixin"
+  Model.reopenClass: "#Model.reopenClass"
+  App.Photo: "#App.Photo"
+  Controllers: "#Controllers"
+  PhotosController: "#PhotosController"
+  PhotoEditController: "#PhotoEditController"
+  Templates: "#Templates"
+  photos Template: "#photos-Template"
+  photo Template: "#photo-Template"
+  photo.edit Template: "#photo.edit-Template"
+  photo.form Template: "#photo.form-Template"
+  photo.new Template: "#photo.new-Template"
+  Conclusion: "#Conclusion"
 ---
 *Ember Data* is one of the most ambitious undertakings in recent JavaScript history. It carries the promise of a persistance library that makes it easy to build large browser applications that interact with diverse APIs. *Ember Data* is evolving quickly as the Ember Core Team experiments and iterates the library to create a generalized solution that will work for many use cases. These changes introduce code with kinks that haven't been ironed out yet. When using *Ember Data* developers often find themselves digging into the library to look where the problem originates.
 
@@ -20,9 +43,7 @@ This articles walks you through creating a CRUD app without *Ember Data* to give
 
 [h3]Application[/h3]
 
-The Ember CRUD Example app does basic CRUD functionality and stores the created entries in HTML5 localStorage.
-
-Create an app instance and configure it to log useful information.
+The Ember CRUD Example app does basic CRUD functionality and stores the created entries in HTML5 localStorage. Let's create an app instance and configure it to log useful information.
 
 ```javascript
 // log binding activities
@@ -42,7 +63,7 @@ var App = Ember.Application.create({
 
 [info]Routes is a good place to start planning your application. If you're not sure where to start, start with routes.[/info]
 
-The example app allows the user to upload photos and add title and description to each photo. So we start with urls where the user will be perform these actions.
+We want the our app to allow users to upload photos and add title and description to each photo. So we start with urls where the user will be perform these actions.
 
 ```javascript
 App.Router.map(function(){
@@ -435,7 +456,7 @@ Like **photo.edit** we're able to reuse the **photo.form** without unnecessary d
 </div>
 ```
 
-### Conclusion
+[h3]Conclusion[/h3]
 
 This article is first in a series of articles that describe what it takes to build a complete CRUD app without Ember Data. In this article, we covered all of the basic CRUD operations but we didn't cover many other important topics. In follow up articles, we'll add validation, content preloading an authentication. In the mean time, you can try the code in this article and play with the *Ember App Kit* version in the [GitHub repository](https://github.com/taras/ember-crud-example).
 
