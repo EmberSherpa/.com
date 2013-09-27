@@ -146,10 +146,10 @@ mixin twitter_follow()
     !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 mixin github_follow()
-  iframe(src="http://ghbtns.com/github-btn.html?user=tarasm&type=follow", allowtransparency="true", frameborder="0", scrolling="0", width="132", height="20")
+  iframe(src="http://ghbtns.com/github-btn.html?user=taras&type=follow", allowtransparency="true", frameborder="0", scrolling="0", width="132", height="20")
 
 mixin github_star()
-  iframe(src="http://ghbtns.com/github-btn.html?user=tarasm&repo=embersherpa&type=watch", allowtransparency="true", frameborder="0", scrolling="0", width="65", height="20")
+  iframe(src="http://ghbtns.com/github-btn.html?user=taras&repo=embersherpa&type=watch", allowtransparency="true", frameborder="0", scrolling="0", width="65", height="20")
 
 mixin menu_nav(name)
   - if ( page && page.metadata.hasOwnProperty(name) ) { var menu = page.metadata[name] } else { var menu = {} }
