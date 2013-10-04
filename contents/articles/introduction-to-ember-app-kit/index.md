@@ -137,7 +137,7 @@ var PhotoNewRoute = Ember.Route.extend({
 export default PhotosNewRoute; // export PhotosNewRoute
 ```
 
-in **app/models/photos.js**
+in **app/models/photo.js**
 ```
 import Model from 'appkit/models/index';
 
@@ -145,11 +145,13 @@ var Photo = Model.extend({
   title: ""
 });
 
-export default Model;
+export default Photo;
 ```
 
-<div class="dialog dialog-warning">You don't have to set your classes into the App namespace. ( ie. ~~```App.ApplicationRoute = Ember.Route.extend({}); ```~~ ), but you have to import your *App* from the *app* module with ```import App from 'appkit/app';```.
-</div>
+[warning]You don't have to set your classes into the App namespace. ( ie. ~~```App.ApplicationRoute = Ember.Route.extend({}); ```~~ ), but you have to import your *App* from the *app* module with ```import App from 'appkit/app';```.
+[/warning]
+
+[info]For a deeper look into *ECMAScript 6 Modules* in *Ember App Kit*, checkout the [Introducing the Ember App Kit](http://blog.safaribooksonline.com/2013/09/18/ember-app-kit/) by [Matthew Beale](https://github.com/mixonic)[/info]
 
 <span id="bower"></span>
 ### Bower
