@@ -2,7 +2,7 @@
 title: "willTransition"
 template: topic.jade
 tags: [ route, transition ]
-description: called whenever transition triggered on current route
+description: called whenever transition gets triggered on current route
 value: function
 arguments:
     transition:
