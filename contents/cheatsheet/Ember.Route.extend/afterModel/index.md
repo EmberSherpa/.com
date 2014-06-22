@@ -1,6 +1,6 @@
 ---
 title: afterModel
-description: hooked called after models are resolved ( use for late redirect )
+description: called after models are resolved ( use for late redirect )
 arguments:
     model:
         required: false
