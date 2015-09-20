@@ -1,0 +1,61 @@
+@import "base";
+
+@include establish-baseline;
+
+
+//Set font families and colors
+body {
+  font-family: $body-copy;
+  color: $text-color;
+  font-weight: 400;
+  @include adjust-font-size-to(16px);
+}
+
+h1, h2, h3 {
+  font-family: $title-font;
+  color: $main-color;
+  font-weight: normal;
+}
+
+h2 {
+  @include adjust-font-size-to(21px);
+}
+
+h3 {
+  @include adjust-font-size-to(18px);
+}
+
+input[type="text"], input[type="email"], input[type="submit"], textarea {
+  font-family: $title-font;
+  @include adjust-font-size-to(14px);
+}
+
+.small {
+  text-transform: uppercase;
+  @include adjust-font-size-to(14px);
+}
+
+p a {
+  color: $second-color;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+  color: darken($text-color, 10);
+}
+
+//Styles
+em {
+  font-style: italic;
+}
+strong {
+  font-weight: bold;
+}
+
+blockquote {
+  p {
+    @include adjust-font-size-to(21px);
+    font-style: italic;
+  }
+}

@@ -1,0 +1,48 @@
+@mixin breakpoint($point) {
+   @if $point == desktop {
+     @media (min-device-width: 1200px) { @content ; }
+  }
+   @else if $point == laptop {
+     @media (min-device-width: 1100px ) { @content ; }
+  }
+  @else if $point == tablet {
+     @media (min-device-width: 700px) { @content ; }
+  }
+  @else if $point == mobileonly {
+     @media (max-device-width: 699px)  { @content ; }
+  }
+}
+
+@mixin clearfix(){
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin makebutton($color, $hoverc : saturate($color, 10)){
+  @extend %btn-base;
+  border-color: $color;
+  color: $color;
+  &:hover {
+    color: $hoverc;
+    border-color: $hoverc;
+  }
+}
+
+@mixin box-sizing($sizing) {
+  -moz-box-sizing: $sizing;
+       box-sizing: $sizing;
+}
+
+@mixin lineal-background($start, $end) {
+  background: $start;
+  background: -moz-linear-gradient(top, $start 0%, $end 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$start), color-stop(100%,$end));
+  background: -webkit-linear-gradient(left, $start 0%,$end 100%);
+  background: -o-linear-gradient(left, $start 0%,$end 100%);
+  background: -ms-linear-gradient(left, $start 0%,$end 100%);
+  background: linear-gradient(left right, $start 0%,$end 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$start', endColorstr='$end',GradientType=0 );
+}

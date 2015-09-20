@@ -1,0 +1,27 @@
+//Vertical rythm config
+$base-font-size: 16px;
+$base-line-height: 20px;
+$round-to-nearest-half-line: true;
+$rhythm-unit: "rem";
+@import "vertical-rhythms";
+
+//Typography variables
+$body-copy: 'Lato', 'Helvetica', sans-serif;
+$title-font: 'Montserrat', 'Helvetica', sans-serif;
+
+//Colors
+
+$text-color: #666666;
+$text-darker: darken($text-color, 20);
+$text-contrast: #fff;
+
+$main-color: #D7534B;
+$second-color: #53042E;
+$accent-color: #FD985C;
+
+$content-background: #FFF8EF;
+$footer-background: #473732;
+
+//Sizes
+$radius-size: 4px;
+$nav-height: 24px;

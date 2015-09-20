@@ -1,0 +1,94 @@
+.home-header {
+  @include lineal-background($main-color, #9F283F);
+  padding: 1rem 0 3rem 0;
+  
+  .tomster {
+    @extend .one-half;
+    margin: 2rem auto;
+    position: relative;
+    z-index: 1;
+    
+    padding: 2rem 0 2rem 200px;
+    
+    &:before {
+      //Tomster
+      content: "";
+      display: block;
+      background: url(images/tomster_sherpa.png) no-repeat 0 2rem;
+      background-size: 157px auto;
+      width: 200px;
+      height: 500px;
+      
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+    &:after {
+      //Mountains
+      content: "";
+      display: block;
+      background: url(images/mountain.svg) no-repeat;
+      width: 724px;
+      height: 307px;
+      opacity: 0.1;
+      
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: -1;
+    }
+  }
+  h2 {
+    color: $text-contrast;
+    font-family: $body-copy;
+    @include adjust-font-size-to(36px);
+    margin: 1rem 0;
+  }
+  .ask-question {
+    display: inline-block;
+    background: $second-color;
+    color: $text-contrast;
+    
+    padding: 0.5rem 1rem;
+    border-radius: $radius-size;
+    
+    @include adjust-font-size-to(32px);
+    font-family: $title-font;
+    font-weight: bold;
+  }
+  span {
+    display: block;
+    color: $accent-color;
+    @include adjust-font-size-to(16px);
+    margin: 1rem;
+  }
+}
+
+.popular-questions {
+  background: $content-background;
+  padding: 2rem 0;
+  @include clearfix();
+  
+  h2 {
+    text-align: center;
+    text-transform: uppercase;
+    margin: 2rem 0;
+  }
+  article {
+    @extend .one-half;
+    float: left;
+    padding: 1rem 2rem 1rem 1rem;
+    margin: 1rem 0;
+    
+    .avatar {
+      float: left;
+      width: 60px;
+      border-radius: 60px;
+      margin-right: 1rem;
+    }
+    h3 {
+      line-height: 1.3rem;
+    }
+  }
+}

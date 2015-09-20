@@ -1,0 +1,88 @@
+
+//Import modules
+@import "partials/reset";
+@import "partials/typography";
+@import "partials/mixins";
+@import "partials/forms";
+@import "partials/layout";
+
+@import "modules/index";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-weight: normal;
+}
+
+%btn-base {
+  display: inline-block;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  text-align: left;
+  padding: 0.5rem 1.6rem;
+//  @include single-transition(all, 300ms);
+  @include adjust-font-size-to(24px);
+  font-family: $body-copy;
+  -webkit-font-smoothing: antialiased;
+  &:after {
+    content: "\203a";
+    font-family: $body-copy;
+    font-weight: bold;
+  }
+}
+
+.site-nav {
+  @extend .one-half;
+  margin: 0 auto;
+  border-bottom: 1px solid $accent-color;
+  @include clearfix();
+  line-height: $nav-height;
+  
+  h1 {
+    @include adjust-font-size-to(21px);
+    color: $accent-color;
+    float: left;
+    line-height: $nav-height;
+    padding: 1rem;
+  }
+  ul {
+    display: block;
+    float: right;
+    li {
+      display: inline-block;
+      @include adjust-font-size-to(14px);
+      line-height: $nav-height;
+      a {
+        display: inline-block;
+        color: $text-contrast;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+.site-footer {
+  background: $footer-background;
+  padding: 1rem 0;
+  
+  article {
+    @extend .one-quarter;
+    float: left;
+    @include adjust-font-size-to(16px);
+  }
+  h3 {
+    @include adjust-font-size-to(18px);
+    color: $text-contrast;
+    border-bottom: 2px solid $main-color;
+    padding: 0.5rem 0;
+    display: inline-block;
+  }
+  li {
+    margin: 1rem 0;
+  }
+  a {
+    color: #fff;
+  }
+}

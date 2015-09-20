@@ -1,0 +1,25 @@
+html, body {
+    height: 100%;
+}
+
+.wrap {
+  margin: 0 0.5rem;
+  @include clearfix();
+  
+  @include breakpoint(tablet) {
+    width: 90%;
+    margin: 0 auto;
+  }
+  @include breakpoint(laptop) {
+    max-width: 1024px;
+  }
+}
+
+.one-quarter {
+  @include box-sizing(border-box);
+  width: 25%;
+}
+.one-half {
+  @include box-sizing(border-box);
+  width: 50%;
+}

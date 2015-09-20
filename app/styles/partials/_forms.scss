@@ -1,0 +1,13 @@
+input[type='text'], input[type='password'], input[type='tel'] , input[type='email'] {
+  border: none;
+  outline: none;
+  background: none;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  @include adjust-font-size-to(14px);
+  font-family: $title-font;
+//  @include single-transition(border, 200ms);
+  &:hover {
+    border-color: #747474;
+  }
+}
