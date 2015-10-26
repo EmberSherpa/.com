@@ -6,6 +6,8 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('meetup');
+  this.route('appointment');
 });
 
 export default Router;

@@ -1,2 +1,17 @@
 @import 'materialize';
 @import 'ember-cli-materialize';
+
+.hero-card {
+  .row.card-content {
+    padding-bottom: 0;
+  }
+  .headline {
+    font-weight: bold;
+    color: #e65100;
+  }
+  .subtitle {
+    font-style: italic;
+    font-weight: 500;
+    color: #ff9800 !important;
+  }
+}
