@@ -2,7 +2,7 @@
   <!-- A workaround to get the "active" class
     to apply to the active <li> automatically -->
   {{#link-to 'meetup' tagName='li'}}
-    {{link-to 'Meetup' 'meetup'}}
+    {{link-to 'Global Ember Meetup' 'meetup'}}
   {{/link-to}}
 {{/md-navbar}}
 
@@ -10,6 +10,12 @@
   {{outlet}}
 </div>
 
+<footer class='page-footer brown darken-2 white-text'>
+    {{#md-copyright text='EmberSherpa'
+        startYear=2014
+        class='brown darken-4 white-text'}}
+    {{/md-copyright}}
+</footer>
 
 {{!-- ember-cli-materialize modal container --}}
 {{md-modal-container}}

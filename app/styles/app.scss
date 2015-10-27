@@ -2,6 +2,9 @@
 @import 'ember-cli-materialize';
 
 .hero-card {
+  img {
+    max-height: 200px;
+  }
   .row.card-content {
     padding-bottom: 0;
   }
@@ -13,5 +16,12 @@
     font-style: italic;
     font-weight: 500;
     color: #ff9800 !important;
+  }
+}
+
+.button-container {
+  margin-top: 10px;
+  .btn {
+    width: 100%;
   }
 }
