@@ -7,7 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('meetup');
-  this.route('appointment');
+  this.route('mentoring');
 });
 
 export default Router;
