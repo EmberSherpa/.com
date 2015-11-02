@@ -1,10 +1,17 @@
-{{ivy-videojs
-  fluid=true
-  controls=true
-  autoplay=autoplay
-  src=(get (find-where video.files quality=(video-quality)) 'link')
-  poster=(get (best-fit video.pictures.sizes width=width) 'link')
-}}
+{{#with (get (best-fit video.pictures.sizes width=width) 'link') as |poster|}}
+  {{ivy-videojs
+    fluid=true
+    controls=true
+    autoplay=autoplay
+    src=(get (find-where video.files quality=(video-quality)) 'link')
+    poster=poster
+    ready="videoReady"
+  }}
 <style type="text/css">
-  #{{elementId}} { height: {{height}}px; }
+  #{{elementId}} {
+    background: url({{poster}}) top center;
+    background-size: contain;
+    height: {{height}}px;
+  }
 </style>
+{{/with}}
