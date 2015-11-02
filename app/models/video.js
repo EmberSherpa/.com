@@ -15,5 +15,6 @@ export default Model.extend({
   license: attr(),
   link: attr(),
   pictures: attr(),
-  width: attr('number')
+  width: attr('number'),
+  files: attr()
 });

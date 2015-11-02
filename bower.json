@@ -13,10 +13,14 @@
     "loader.js": "ember-cli/loader.js#3.2.1",
     "qunit": "~1.18.0",
     "materialize": "~0.97.0",
-    "video.js": "^5.0.0"
+    "video.js": "^5.0.2"
   },
   "resolutions": {
     "jquery": "^1.11.3",
-    "ember": "2.1.0"
+    "ember": "2.1.0",
+    "ember-load-initializers": "0.1.5",
+    "ember-qunit": "0.4.9",
+    "loader.js": "3.2.1",
+    "qunit": "~1.18.0"
   }
 }

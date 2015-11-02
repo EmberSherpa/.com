@@ -1,0 +1,10 @@
+{{ivy-videojs
+  fluid=true
+  controls=true
+  autoplay=autoplay
+  src=(get (find-where video.files quality=(video-quality)) 'link')
+  poster=(get (best-fit video.pictures.sizes width=width) 'link')
+}}
+<style type="text/css">
+  #{{elementId}} { height: {{height}}px; }
+</style>
