@@ -2,10 +2,6 @@ import Ember from 'ember';
 import DS from 'ember-data';
 
 const {
-  get
-} = Ember;
-
-const {
   decamelize,
   dasherize
 } = Ember.String;
@@ -15,7 +11,6 @@ export default DS.JSONAPISerializer.extend({
     let [ id ] = payloadHash.uri.match(/([0-9]*)$/);
     let type = typeClass.modelName;
 
-    let hash = { type, id };
     let attributes = [];
     typeClass.eachAttribute(function(field) {
       let payloadField = decamelize(field);

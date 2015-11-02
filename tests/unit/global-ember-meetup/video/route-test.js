@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:index', 'Unit | Route | index', {
+moduleFor('route:global-ember-meetup/video', 'Unit | Route | global ember meetup/video', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

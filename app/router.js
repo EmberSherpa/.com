@@ -6,7 +6,11 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('meetup');
+  this.route('global-ember-meetup', function() {
+    this.route('video', {path: 'video/:id'}, function(){
+      
+    });
+  });
   this.route('mentoring');
 });
 

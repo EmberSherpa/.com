@@ -3,7 +3,7 @@ import EmberData from 'ember-data';
 const {
   attr,
   Model
-} = EmberData
+} = EmberData;
 
 export default Model.extend({
   name: attr(),

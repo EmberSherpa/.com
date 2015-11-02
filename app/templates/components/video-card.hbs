@@ -1,0 +1,13 @@
+{{#md-card
+  class='video-card'
+  title=video.name
+  activator=activator
+  image=(get (best-fit video.pictures.sizes width=width) 'link')
+}}
+  {{#md-card-reveal}}
+    {{video.description}}
+  {{/md-card-reveal}}
+  {{#md-card-action}}
+    {{yield}}
+  {{/md-card-action}}
+{{/md-card}}

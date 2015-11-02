@@ -1,0 +1,11 @@
+{{#if videos}}
+  {{#each videos as |video|}}
+    {{#video-card activator=true video=video}}
+      {{#link-to 'global-ember-meetup.video' video}}
+        Watch Video
+      {{/link-to}}
+    {{/video-card}}
+  {{/each}}
+{{else}}
+  {{md-loader mode="circular"}}
+{{/if}}
