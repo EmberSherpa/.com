@@ -14,10 +14,5 @@ export default Ember.Component.extend({
     let {width, height} = size;
     let ratio = height / width;
     return refWidth * ratio;
-  },
-  actions: {
-    videoReady(player) {
-      this.set('player', player);
-    }
   }
 });
