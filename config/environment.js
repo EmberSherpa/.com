@@ -20,7 +20,7 @@ module.exports = function(environment) {
 
     disqus: {
       shortname: 'embersherpa',
-      disqus_url: 'http://sembersherpa.pagefrontapp.com'
+      disqus_url: 'https://embersherpa.pagefrontapp.com'
     }
   };
 
