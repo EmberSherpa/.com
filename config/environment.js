@@ -19,8 +19,7 @@ module.exports = function(environment) {
     },
 
     disqus: {
-      shortname: 'embersherpa',
-      disqus_url: 'https://embersherpa.pagefrontapp.com'
+      shortname: 'embersherpa'
     }
   };
 
