@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col m10">
-    {{video-player video=model autoplay=autoplay}}
     <h3>{{model.name}}</h3>
+    {{video-player video=model autoplay=autoplay controls=true}}
     {{disqus-comments
       identifier=model.id
       title=model.name

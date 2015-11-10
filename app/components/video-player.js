@@ -19,6 +19,7 @@ export default Ember.Component.extend({
     ready(player) {
       // autoplay is not bound, only triggered when video is ready
       player.autoplay(this.get('autoplay'));
+      player.controls(this.get('controls'));
     }
   }
 });

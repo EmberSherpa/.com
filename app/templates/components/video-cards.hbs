@@ -2,8 +2,12 @@
   {{#each videos as |video|}}
     {{#video-card activator=true video=video}}
       {{#link-to 'global-ember-meetup.video' video (query-params autoplay=true)}}
-        Play
+        <i class="fa fa-play-circle"></i> Play
       {{/link-to}}
+      {{disqus-comment-count
+        identifier=video.id
+        title=video.name
+      }}
     {{/video-card}}
   {{/each}}
 {{else}}
