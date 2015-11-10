@@ -14,5 +14,11 @@ export default Ember.Component.extend({
     let {width, height} = size;
     let ratio = height / width;
     return refWidth * ratio;
+  },
+  actions: {
+    ready(player) {
+      // autoplay is not bound, only triggered when video is ready
+      player.autoplay(this.get('autoplay'));
+    }
   }
 });

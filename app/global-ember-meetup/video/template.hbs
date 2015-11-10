@@ -1,11 +1,11 @@
 <div class="row">
   <div class="col m10">
-    {{video-player video=model}}
+    {{video-player video=model autoplay=autoplay}}
     <h3>{{model.name}}</h3>
     {{disqus-comments
-        identifier=model.id
-        title=model.name
-      }}
+      identifier=model.id
+      title=model.name
+    }}
   </div>
   <div class="col m2">
 

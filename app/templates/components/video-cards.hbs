@@ -1,7 +1,7 @@
 {{#if videos}}
   {{#each videos as |video|}}
     {{#video-card activator=true video=video}}
-      {{#link-to 'global-ember-meetup.video' video}}
+      {{#link-to 'global-ember-meetup.video' video (query-params autoplay=true)}}
         Play
       {{/link-to}}
     {{/video-card}}

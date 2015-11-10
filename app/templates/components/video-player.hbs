@@ -1,10 +1,9 @@
 {{#with (get (best-fit video.pictures.sizes width=width) 'link') as |poster|}}
   {{ivy-videojs
     fluid=true
-    controls=true
-    autoplay=autoplay
     src=(get (find-where video.files quality=(video-quality)) 'link')
     poster=poster
+    ready="ready"
   }}
 <style type="text/css">
   #{{elementId}} {
