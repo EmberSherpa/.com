@@ -1,0 +1,14 @@
+
+{{#md-navbar name='EmberSherpa' class='deep-orange'}}
+  <!-- A workaround to get the "active" class
+    to apply to the active <li> automatically -->
+	  {{#link-to 'mentoring' tagName='li'}}
+    {{link-to 'Mentoring' 'mentoring'}}
+  {{/link-to}}
+  {{#link-to 'about' tagName='li'}}
+    {{link-to 'About' 'about'}}
+  {{/link-to}}
+  {{!-- {{#link-to 'global-ember-meetup' tagName='li'}}
+    {{link-to 'Global Ember Meetup' 'global-ember-meetup'}}
+  {{/link-to}} --}}
+{{/md-navbar}}

@@ -1,24 +1,10 @@
-{{#md-navbar name='EmberSherpa' class='deep-orange'}}
-  <!-- A workaround to get the "active" class
-    to apply to the active <li> automatically -->
-  {{#link-to 'mentoring' tagName='li'}}
-    {{link-to 'Mentoring' 'mentoring'}}
-  {{/link-to}}
-  {{#link-to 'global-ember-meetup' tagName='li'}}
-    {{link-to 'Global Ember Meetup' 'global-ember-meetup'}}
-  {{/link-to}}
-{{/md-navbar}}
+{{nav-bar}}
 
 <div class="container">
   {{outlet}}
 </div>
 
-<footer class='page-footer brown darken-2 white-text'>
-    {{#md-copyright text='EmberSherpa'
-        startYear=2014
-        class='brown darken-4 white-text'}}
-    {{/md-copyright}}
-</footer>
+{{site-footer}}
 
 {{!-- ember-cli-materialize modal container --}}
 {{md-modal-container}}

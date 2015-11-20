@@ -1,73 +1,76 @@
-<div class="row">
+<div class="row margin-top-20">
   <div class="col l8">
-    <h4>Let a mentor light the way</h4>
-    <p>Our mentors are Ember.js experts who can help you improve your code,
+    <h4 class="deep-orange-text">Don't Invest in a Project. Invest in Your Team.</h4>
+    <p class="margin-top-20">Our mentors are Ember.js experts who can help you improve your code,
       advise on app architecture or suggest what to expect when starting an app.
       Every mentor is an active participant in Ember.js ecosystem and has 2+ years
-      of Ember.js experience.</p>
-    <div class="divider"></div>
+    of Ember.js experience.</p>
     <div class="section">
-      <h5>We offer</h5>
       <div class="row">
-        <div class="col m6">
-        {{#md-card title="Remote Pairing"}}
+        <div class="col s12 m6 l6">
+          {{#md-card class="z-depth-2" title="Pairing Sessions"}}
           {{#md-card-content}}
-            We'll use Screenhero to look at your code,
-            suggest improvements and help you refactor
-            to make it simpler, more flexible and more
-            efficient.
+            We'll use Screenhero to look at your code, suggest improvements and help you refactor to make it simpler, more flexible and more efficient.
             <div class="button-container">
-              <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=366dbf19-20c1-4e8a-bff0-9fb8ef67039b" class="btn btn-large">Book Now</a>
-            </div>
+            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=366dbf19-20c1-4e8a-bff0-9fb8ef67039b" class="btn btn-large orange">Book a Free Pairing</a>
+          </div>
           {{/md-card-content}}
-        {{/md-card}}
+          {{/md-card}}
         </div>
-        <div class="col m6">
-          {{#md-card title="Advice"}}
-            {{#md-card-content}}
-              Are you starting a project or need advice
-              on how to move forward with existing code
-              base? We can give you confidence to move foreward.
-              <div class="button-container">
-                <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=4c50e848-71d3-44ba-9182-42fc2e224ad8" class="btn btn-large">Book Now</a>
-              </div>
-            {{/md-card-content}}
+        <div class="col s12 m6 l6">
+          {{#md-card class="z-depth-2" title="Office Hours"}}
+          {{#md-card-content}}
+          Are you starting a project or need advice on how to move forward with existing code base? We can give you confidence to move foreward.
+          <div class="button-container">
+            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=4c50e848-71d3-44ba-9182-42fc2e224ad8" class="btn btn-large orange">Book Free Advice</a>
+          </div>
+          {{/md-card-content}}
           {{/md-card}}
         </div>
       </div>
     </div>
     <div class="divider"></div>
     <div class="section">
-      <h5>Our Mentors</h5>
+      {{!-- test mentors --}}
+     {{!--  <h5>Mentors</h5>
+      <div class="row">
+        <div class="col s12 m6 l6">
+          {{#each content as |mentors|}}
+          {{mentor-card mentors=mentors}}
+          {{/each}}
+        </div>
+      </div> --}}
+      {{!-- end test mentors --}}
+      <h4 class="deep-orange-text">Mentors</h4>
       <div class="row">
         <div class="col m6">
-        {{#md-card title="Taras Mankovski" image='images/taras.jpg'}}
+          {{#md-card title="Taras Mankovski" image='images/taras.jpg'}}
           {{#md-card-content}}
-            Taras is the original EmberSherpa. Taras is a contributor
-            to numerous Ember addons and a great resources architecture
-            and code advice.
+          Taras is the original EmberSherpa. Taras is a contributor
+          to numerous Ember addons and a great resources architecture
+          and code advice.
           {{/md-card-content}}
           {{#md-card-action}}
-            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?staff_id=08d2bd90-092e-428f-b735-8bcbdda3ee2c">Book Now</a>
+          <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?staff_id=08d2bd90-092e-428f-b735-8bcbdda3ee2c">Book Now</a>
           {{/md-card-action}}
-        {{/md-card}}
+          {{/md-card}}
         </div>
         <div class="col m6">
           {{#md-card title="Sam Selikoff" image='images/sam.jpg'}}
-            {{#md-card-content}}
-              Sam is the creator of <a href="http://www.ember-cli-mirage.com/">EmberCLI Mirage</a>. Sam has extensive,
-              experience writing Ember.js applications using Ruby on Rails as backend.
-            {{/md-card-content}}
-            {{#md-card-action}}
-            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?staff_id=1f2c76c6-f648-476e-9ce4-0ecd1ebccc0b">Book Now</a>
-            {{/md-card-action}}
+          {{#md-card-content}}
+          Sam is the creator of <a href="http://www.ember-cli-mirage.com/">EmberCLI Mirage</a>. Sam has extensive,
+          experience writing Ember.js applications using Ruby on Rails as backend.
+          {{/md-card-content}}
+          {{#md-card-action}}
+          <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?staff_id=1f2c76c6-f648-476e-9ce4-0ecd1ebccc0b">Book Now</a>
+          {{/md-card-action}}
           {{/md-card}}
         </div>
       </div>
     </div>
   </div>
   <div class="col l4">
-    <h5>What people say</h5>
+    <h5 class="deep-orange-text">Join the Conversation</h5>
     {{twitter-card tweet-id='659438726364438528'}}
     {{twitter-card tweet-id='654683480261963776'}}
     {{twitter-card tweet-id='657165332524699648'}}
