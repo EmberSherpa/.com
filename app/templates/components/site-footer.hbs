@@ -1,6 +1,20 @@
-<footer class='page-footer orange white-text'>
-    {{#md-copyright text='EmberSherpa'
-        startYear=2014
-        class='deep-orange white-text'}}
-    {{/md-copyright}}
+<footer class="page-footer orange white-text">
+	<div class="container">
+		{{!-- sharing buttons --}}
+		<div class="row text-center">
+			<div class="col s4">
+				<a href="http://twitter.com/embersherpa">{{fa-icon icon="twitter-square" size="lg" class="white-text"}}</a> Twitter
+			</div>
+			<div class="col s4">
+				<a href="https://www.linkedin.com/groups/8233908">{{fa-icon icon="linkedin-square" size="lg" class="white-text"}}</a> EmberJS Group
+			</div>
+			<div class="col s4">
+				<a href="mailto: t@embersherpa.com">{{fa-icon icon="envelope" size="lg" class="white-text"}}</a> Email Us
+			</div>
+		</div>
+		{{!-- end sharing buttons --}}
+	</div>
+	{{#md-copyright class="deep-orange white-text" text='EmberSherpa'
+	startYear=2014}}
+	{{/md-copyright}}
 </footer>

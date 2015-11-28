@@ -1,56 +1,57 @@
-<div class="row margin-top-20">
-  <div class="col l8">
-    <h4 class="deep-orange-text">Expert Help From Mentors</h4>
-    
-    <p class="margin-top-20">Our mentors are Ember.js experts passionate about helping you improve your code and are all active contributors in the Ember.js ecosystem.
-    </p>
-    
-    <p>
-      <ol>
-        <li>Get advice on app architecture</li>
-        <li>Selling point here</li>
-        <li>Selling point here</li>
-      </ol>
-    </p>
-    <div class="divider"></div>
-    <div class="section">
-      <div class="row margin-top-20">
-        <h4 class="deep-orange-text">Invest in Your Team Today.</h4>
-        <div class="col s12 m6 l6">
-          {{#md-card class="z-depth-2" title="Pairing Sessions"}}
-          {{#md-card-content}}
-          Get an expert to look at your code, suggest improvements, and help you refactor your code making it simpler, more flexible and more efficient.
-          <div class="button-container">
-            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=366dbf19-20c1-4e8a-bff0-9fb8ef67039b" class="btn btn-large orange">Book a Free Pairing</a>
+<div class="container">
+  <div class="row margin-top-20">
+    <div class="col l8">
+      <h4 class="deep-orange-text">Expert Help From Mentors</h4>
+      
+      <p class="margin-top-20">Our mentors are Ember.js experts passionate about helping you improve your code and are all active contributors in the Ember.js ecosystem.
+      </p>
+      
+      <p>
+        <ol>
+          <li>Get advice on app architecture</li>
+          <li>Selling point here</li>
+          <li>Selling point here</li>
+        </ol>
+      </p>
+      <div class="divider"></div>
+      <div class="section">
+        <div class="row margin-top-20">
+          <h4 class="deep-orange-text">Invest in Your Team Today.</h4>
+          <div class="col s12 m6 l6">
+            {{#md-card class="z-depth-2" title="Pairing Sessions"}}
+            {{#md-card-content}}
+            Get an expert to look at your code, suggest improvements, and help you refactor your code making it simpler, more flexible and more efficient.
+            <div class="button-container">
+              <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=366dbf19-20c1-4e8a-bff0-9fb8ef67039b" class="btn btn-large orange">Book a Free Pairing</a>
+            </div>
+            {{/md-card-content}}
+            {{/md-card}}
           </div>
-          {{/md-card-content}}
-          {{/md-card}}
-        </div>
-        <div class="col s12 m6 l6">
-          {{#md-card class="z-depth-2" title="Office Hours"}}
-          {{#md-card-content}}
-          Starting a new project or need advice on how to move forward with your existing code base? Talking to a mentor and working through the problem can give you confidence to move forward.
-          <div class="button-container">
-            <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=4c50e848-71d3-44ba-9182-42fc2e224ad8" class="btn btn-large orange">Book Free Advice</a>
+          <div class="col s12 m6 l6">
+            {{#md-card class="z-depth-2" title="Office Hours"}}
+            {{#md-card-content}}
+            Starting a new project or need advice on how to move forward with your existing code base? Talking to a mentor and working through the problem can give you confidence to move forward.
+            <div class="button-container">
+              <a href="https://squareup.com/appointments/book/0badee89-09fd-43d2-b7eb-d9b2939e3a49/start?service_id=4c50e848-71d3-44ba-9182-42fc2e224ad8" class="btn btn-large orange">Book Free Advice</a>
+            </div>
+            {{/md-card-content}}
+            {{/md-card}}
           </div>
-          {{/md-card-content}}
-          {{/md-card}}
         </div>
       </div>
-    </div>
-    <div class="divider"></div>
-    <div class="section">
-      {{!-- mentors --}}
-      <h5>Mentors</h5>
-      <div class="row">
-        <div class="col s12 m6 l6">
-          {{#each model as |mentor|}}
-          {{mentor-card mentor=mentor}}
-          {{/each}}
+      <div class="divider"></div>
+      <div class="section">
+        {{!-- mentors --}}
+        <h5>Mentors</h5>
+        <div class="row">
+          <div class="col s12 m6 l6">
+            {{#each model as |mentor|}}
+            {{mentor-card mentor=mentor}}
+            {{/each}}
+          </div>
         </div>
+        {{!-- end mentors --}}
       </div>
-      {{!-- end mentors --}}
-    </div>
     </div>
     <div class="col l4">
       <h5 class="deep-orange-text">Join the Conversation</h5>
@@ -61,3 +62,4 @@
       {{twitter-card tweet-id='655416448311910400' conversation='none'}}
     </div>
   </div>
+</div>
