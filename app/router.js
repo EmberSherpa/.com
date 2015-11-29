@@ -12,6 +12,7 @@ Router.map(function() {
     });
   });
   this.route('mentoring');
+  this.route('about');
 });
 
 export default Router;
